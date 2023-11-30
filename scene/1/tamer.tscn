@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://da80rvclernjh"]
+[gd_scene load_steps=5 format=3 uid="uid://da80rvclernjh"]
 
 [ext_resource type="Script" path="res://scene/1/tamer.gd" id="1_nrsdf"]
+[ext_resource type="PackedScene" uid="uid://5mwapytb61xe" path="res://scene/1/health.tscn" id="2_4bdf8"]
 [ext_resource type="PackedScene" uid="uid://dtop6ce8ht5b" path="res://scene/1/gameboard.tscn" id="2_uprbp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
@@ -30,6 +31,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 [node name="VBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+
+[node name="Health" parent="VBox" instance=ExtResource("2_4bdf8")]
+layout_mode = 2
 
 [node name="Gameboard" parent="VBox" instance=ExtResource("2_uprbp")]
 layout_mode = 2

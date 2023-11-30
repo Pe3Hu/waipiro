@@ -44,6 +44,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Discard" parent="VBox/Cards" instance=ExtResource("3_a2duu")]
+visible = false
 layout_mode = 2
 
 [node name="Exhaustion" parent="VBox/Cards" instance=ExtResource("3_a2duu")]
@@ -51,6 +52,7 @@ visible = false
 layout_mode = 2
 
 [node name="Prestiges" type="HBoxContainer" parent="VBox"]
+visible = false
 layout_mode = 2
 alignment = 1
 

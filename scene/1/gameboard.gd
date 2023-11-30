@@ -26,20 +26,24 @@ func set_attributes(input_: Dictionary) -> void:
 func init_starter_kit_cards() -> void:
 	for suit in Global.arr.suit:
 		for rank in Global.arr.rank:
-			for _i in Global.dict.card.count:
-				var input = {}
-				input.gameboard = self
-				input.rank = rank
-				input.suit = suit
+			var input = {}
+			input.gameboard = self
+			input.rank = rank
+			input.suit = suit
+			input.sustenance = "predator"
+			var index = Global.arr.rank.find(rank)
+			var last = Global.arr.rank.size()-1
 			
+			match index:
+				0:
+					input.sustenance = "scavenger"
+				last:
+					input.sustenance = "herbivore"
+			
+			for _i in Global.dict.card.count[rank]:
 				var card = Global.scene.card.instantiate()
 				available.cards.add_child(card)
 				card.set_attributes(input)
-				card.gameboard = self
-				#print([card.get_index(), suit, rank])
-	
-	#print("___")
-	#reshuffle_available()
 
 
 func init_prestiges() -> void:
@@ -76,17 +80,19 @@ func pull_random_card() -> Variant:
 	if cards.get_child_count() > 0:
 		var card = cards.get_children().pick_random()
 		cards.remove_child(card)
+		
+		if cards.get_child_count() == 0:
+			tamer.arena.hunger = true
+		
 		return card
 	
 	tamer.arena.set_loser(tamer)
-	
-	#print("error: empty available")
 	return null
 
 
 func pull_all_discard() -> void:
-	junior.couple.stack.change_number(1)
-	hand.update_capacity()
+	#junior.couple.stack.change_number(1)
+	#hand.update_capacity()
 	
 	if discard.cards.get_child_count() == 0:
 		tamer.arena.set_loser(tamer)
@@ -95,6 +101,8 @@ func pull_all_discard() -> void:
 			var card = discard.cards.get_child(0)
 			discard.cards.remove_child(card)
 			available.cards.add_child(card)
+	
+	reshuffle_available()
 
 
 func pull_indexed_card(index_: int) -> Variant:

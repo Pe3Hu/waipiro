@@ -10,20 +10,19 @@ var capacity = null
 func set_attributes(input_: Dictionary) -> void:
 	gameboard = input_.gameboard
 	
-	update_capacity()
+	capacity = 1
+	#update_capacity()
 
 
-func update_capacity() -> void:
-	capacity = 0
-	
-	for subtype in Global.arr.prestige:
-		var prestige = gameboard.get(subtype)
-		capacity += prestige.couple.stack.get_number()
-	 
+#func update_capacity() -> void:
+	#capacity = 0
+	#
+	#for subtype in Global.arr.prestige:
+		#var prestige = gameboard.get(subtype)
+		#capacity += prestige.couple.stack.get_number()
+ 
 
 func refill() -> void:
-	gameboard.reshuffle_available()
-	
 	while cards.get_child_count() < capacity and gameboard.tamer.arena.winner == null:# and gameboard.discard.cards.get_child_count() > 0:
 		var card = gameboard.pull_random_card()
 		

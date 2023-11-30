@@ -5,7 +5,6 @@ extends MarginContainer
 @onready var left = $VBox/HBox/Left
 @onready var comparison = $VBox/HBox/Comparison
 @onready var right = $VBox/HBox/Right
-@onready var turn = $VBox/Turn
 
 var arena = null
 
@@ -23,7 +22,6 @@ func init_icons() -> void:
 	input.subtype = 0
 	left.set_attributes(input)
 	right.set_attributes(input)
-	turn.set_attributes(input)
 	
 	left.number.set("theme_override_font_sizes/font_size", 32)
 	right.number.set("theme_override_font_sizes/font_size", 32)
@@ -67,3 +65,7 @@ func give_cards_to_tamer(tamer_: MarginContainer) -> void:
 		var card = cards.get_child(0)
 		cards.remove_child(card)
 		tamer_.gameboard.discard.cards.add_child(card)
+
+
+func get_damage() -> int:
+	return abs(left.get_number() - right.get_number())

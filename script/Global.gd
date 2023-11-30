@@ -28,11 +28,14 @@ func init_arr() -> void:
 	arr.suit = ["aqua", "wind", "fire", "earth"]
 	arr.side = ["left", "right"]
 	arr.prestige = ["senior", "junior"]
+	arr.counter = ["cycle", "turn"]
+	arr.sustenance = ["scavenger", "herbivore", "predator"]
+	arr.state = ["vigor", "standard", "fatigue"]
 
 
 func init_num() -> void:
 	num.index = {}
-	num.index.card = 0
+	num.index.tamer = 0
 
 
 func init_dict() -> void:
@@ -136,6 +139,7 @@ func init_vec():
 	vec.size.box = Vector2(100, 100)
 	vec.size.bar = Vector2(120, 12)
 	
+	vec.size.state = Vector2(100, 12)
 	vec.size.prestige = Vector2(32, 32)
 	
 	init_window_size()
@@ -151,9 +155,17 @@ func init_window_size():
 func init_color():
 	var h = 360.0
 	
-	color.card = {}
-	color.card.selected = Color.from_hsv(160 / h, 0.6, 0.7)
-	color.card.unselected = Color.from_hsv(0 / h, 0.4, 0.9)
+	color.state = {}
+	color.state.vigor = {}
+	color.state.vigor.fill = Color.from_hsv(120 / h, 1, 0.9)
+	color.state.vigor.background = Color.from_hsv(120 / h, 0.25, 0.9)
+	color.state.standard = {}
+	color.state.standard.fill = Color.from_hsv(30 / h, 1, 0.9)
+	color.state.standard.background = Color.from_hsv(30 / h, 0.25, 0.9)
+	color.state.fatigue = {}
+	color.state.fatigue.fill = Color.from_hsv(0, 1, 0.9)
+	color.state.fatigue.background = Color.from_hsv(0, 0.25, 0.9)
+
 
 
 func save(path_: String, data_: String):

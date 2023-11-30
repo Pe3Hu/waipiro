@@ -3,12 +3,15 @@ extends MarginContainer
 
 @onready var tamers = $VBox/Tamers
 @onready var libra = $VBox/Tamers/Libra
+@onready var turn = $VBox/Counters/Turn
+@onready var cycle = $VBox/Counters/Cycle
 @onready var timer = $Timer
 
 var battleground = null
 var left = null
 var right = null
 var winner = null
+var hunger = false
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -20,6 +23,8 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	for tamer in input_.tamers:
 		add_tamer(tamer)
+	
+	init_counters()
 
 
 func add_tamer(tamer_: MarginContainer) -> void:
@@ -36,8 +41,21 @@ func add_tamer(tamer_: MarginContainer) -> void:
 		tamer_.side = "right"
 
 
+func init_counters() -> void:
+	var input = {}
+	input.proprietor = self
+	input.type = "counter"
+	
+	for subtype in Global.arr.counter:
+		input.subtype = subtype
+		input.value = 0
+		var counter = get(subtype)
+		counter.set_attributes(input)
+		counter.set_title_size(Vector2(Global.vec.size.prestige))
+
+
 func next_turn() -> void:
-	libra.turn.change_number(1)
+	turn.stack.change_number(1)
 	
 	if winner == null:
 		libra.reset_icons()
@@ -50,19 +68,35 @@ func next_turn() -> void:
 				var card = tamer.gameboard.hand.cards.get_child(0)
 				tamer.gameboard.hand.cards.remove_child(card)
 				libra.add_card(side, card)
-	
+		
 		if libra.comparison.subtype != "equal" and libra.comparison.subtype != "similar":
-			var tamer = null
+			var tamers = {}
 			
 			match libra.comparison.subtype:
 				"greater":
-					tamer = get("left")
+					tamers.winner = get("left")
+					tamers.loser = get("right")
 				"less":
-					tamer = get("right")
+					tamers.winner = get("right")
+					tamers.loser = get("left")
 			
-			libra.give_cards_to_tamer(tamer)
+			libra.give_cards_to_tamer(tamers.winner)
+			tamers.loser.health.get_damage(libra.get_damage())
+		
+		if hunger:
+			for side in Global.arr.side:
+				var tamer = get(side) 
+				tamer.quench_hunger()
+			
+			next_cycle()
 	else:
 		timer.stop()
+
+
+func next_cycle() -> void:
+	turn.stack.set_number(0)
+	cycle.stack.change_number(1)
+	hunger = false
 
 
 func _on_timer_timeout():
@@ -76,3 +110,5 @@ func set_loser(tamer_: MarginContainer) -> void:
 		if tamer != tamer_:
 			winner = tamer
 			break
+
+

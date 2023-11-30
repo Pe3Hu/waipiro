@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk0d0r81u31q3"]
+[gd_scene load_steps=5 format=3 uid="uid://bk0d0r81u31q3"]
 
 [ext_resource type="Script" path="res://scene/2/arena.gd" id="1_rljf5"]
 [ext_resource type="PackedScene" uid="uid://clxdrq3jxl3n8" path="res://scene/2/libra.tscn" id="2_mtvtx"]
+[ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="2_xj3db"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -30,6 +31,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+
+[node name="Counters" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Cycle" parent="VBox/Counters" instance=ExtResource("2_xj3db")]
+layout_mode = 2
+
+[node name="Turn" parent="VBox/Counters" instance=ExtResource("2_xj3db")]
+layout_mode = 2
 
 [node name="Tamers" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
