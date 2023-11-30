@@ -12,5 +12,5 @@ func set_attributes(input_: Dictionary) -> void:
 	cradle = input_.cradle
 	
 	var input = {}
-	input.gambler = self
+	input.tamer = self
 	gameboard.set_attributes(input)

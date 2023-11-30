@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtop6ce8ht5b"]
+[gd_scene load_steps=6 format=3 uid="uid://dtop6ce8ht5b"]
 
 [ext_resource type="Script" path="res://scene/1/gameboard.gd" id="1_8p1bi"]
 [ext_resource type="PackedScene" uid="uid://iu1cq1e5uc7" path="res://scene/1/cardstack.tscn" id="3_a2duu"]
 [ext_resource type="PackedScene" uid="uid://vmnbghswrs0l" path="res://scene/1/hand.tscn" id="4_3lsmn"]
+[ext_resource type="PackedScene" uid="uid://cjkf0au6hyakd" path="res://scene/1/prestige.tscn" id="4_vokx3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_io3fl"]
 
@@ -37,7 +38,6 @@ layout_mode = 2
 alignment = 1
 
 [node name="Available" parent="VBox/Cards" instance=ExtResource("3_a2duu")]
-visible = false
 layout_mode = 2
 
 [node name="Hand" parent="VBox/Cards" instance=ExtResource("4_3lsmn")]
@@ -48,4 +48,14 @@ layout_mode = 2
 
 [node name="Exhaustion" parent="VBox/Cards" instance=ExtResource("3_a2duu")]
 visible = false
+layout_mode = 2
+
+[node name="Prestiges" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Senior" parent="VBox/Prestiges" instance=ExtResource("4_vokx3")]
+layout_mode = 2
+
+[node name="Junior" parent="VBox/Prestiges" instance=ExtResource("4_vokx3")]
 layout_mode = 2

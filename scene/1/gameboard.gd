@@ -5,14 +5,17 @@ extends MarginContainer
 @onready var discard = $VBox/Cards/Discard
 @onready var exhaustion = $VBox/Cards/Exhaustion
 @onready var hand = $VBox/Cards/Hand
+@onready var senior = $VBox/Prestiges/Senior
+@onready var junior = $VBox/Prestiges/Junior
 
-var gambler = null
+var tamer = null
 
 
 func set_attributes(input_: Dictionary) -> void:
-	gambler = input_.gambler
+	tamer = input_.tamer
 	input_.gameboard = self
 	
+	init_prestiges()
 	init_starter_kit_cards()
 	available.set_attributes(input_)
 	discard.set_attributes(input_)
@@ -39,6 +42,18 @@ func init_starter_kit_cards() -> void:
 	#reshuffle_available()
 
 
+func init_prestiges() -> void:
+	var input = {}
+	input.gameboard = self
+	input.type = "prestige"
+	
+	for subtype in Global.arr.prestige:
+		input.subtype = subtype
+		input.value = Global.arr.prestige.find(subtype)
+		var prestige = get(subtype)
+		prestige.set_attributes(input)
+
+
 func reshuffle_available() -> void:
 	var cards = []
 	
@@ -63,15 +78,23 @@ func pull_random_card() -> Variant:
 		cards.remove_child(card)
 		return card
 	
-	print("error: empty available")
+	tamer.arena.set_loser(tamer)
+	
+	#print("error: empty available")
 	return null
 
 
 func pull_all_discard() -> void:
-	while discard.cards.get_child_count() > 0:
-		var card = discard.cards.get_child(0)
-		discard.cards.remove_child(card)
-		available.cards.append(card)
+	junior.couple.stack.change_number(1)
+	hand.update_capacity()
+	
+	if discard.cards.get_child_count() == 0:
+		tamer.arena.set_loser(tamer)
+	else:
+		while discard.cards.get_child_count() > 0:
+			var card = discard.cards.get_child(0)
+			discard.cards.remove_child(card)
+			available.cards.add_child(card)
 
 
 func pull_indexed_card(index_: int) -> Variant:
@@ -89,7 +112,3 @@ func pull_indexed_card(index_: int) -> Variant:
 		
 	print("error: no card with index: ", index_)
 	return null
-
-
-func next_turn() -> void:
-	hand.refill()

@@ -27,6 +27,7 @@ func init_arr() -> void:
 	arr.rank = [1, 2, 3, 4, 5]#, 6]
 	arr.suit = ["aqua", "wind", "fire", "earth"]
 	arr.side = ["left", "right"]
+	arr.prestige = ["senior", "junior"]
 
 
 func init_num() -> void:
@@ -37,6 +38,9 @@ func init_num() -> void:
 func init_dict() -> void:
 	init_neighbor()
 	init_card()
+	
+	dict.thousand = {}
+	dict.thousand[""] = "K"
 
 
 func init_neighbor() -> void:
@@ -131,6 +135,8 @@ func init_vec():
 	vec.size.aspect = Vector2(32, 32)
 	vec.size.box = Vector2(100, 100)
 	vec.size.bar = Vector2(120, 12)
+	
+	vec.size.prestige = Vector2(32, 32)
 	
 	init_window_size()
 

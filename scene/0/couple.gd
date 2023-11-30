@@ -23,5 +23,11 @@ func set_attributes(input_: Dictionary) -> void:
 
 	title.set("theme_override_constants/margin_left", 4)
 	title.set("theme_override_constants/margin_top", 4)
+	
+	custom_minimum_size = title.custom_minimum_size + stack.custom_minimum_size * 0.75
+
+
+func set_title_size(size_: Vector2) -> void:
+	title.custom_minimum_size = size_
 	custom_minimum_size = title.custom_minimum_size + stack.custom_minimum_size * 0.75
 

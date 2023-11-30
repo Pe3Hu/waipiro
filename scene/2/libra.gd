@@ -5,6 +5,7 @@ extends MarginContainer
 @onready var left = $VBox/HBox/Left
 @onready var comparison = $VBox/HBox/Comparison
 @onready var right = $VBox/HBox/Right
+@onready var turn = $VBox/Turn
 
 var arena = null
 
@@ -22,6 +23,7 @@ func init_icons() -> void:
 	input.subtype = 0
 	left.set_attributes(input)
 	right.set_attributes(input)
+	turn.set_attributes(input)
 	
 	left.number.set("theme_override_font_sizes/font_size", 32)
 	right.number.set("theme_override_font_sizes/font_size", 32)
