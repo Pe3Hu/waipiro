@@ -25,6 +25,7 @@ func set_attributes(input_: Dictionary) -> void:
 		add_tamer(tamer)
 	
 	init_counters()
+	next_turn()
 
 
 func add_tamer(tamer_: MarginContainer) -> void:
@@ -62,12 +63,10 @@ func next_turn() -> void:
 		
 		for side in Global.arr.side:
 			var tamer = get(side)
-			tamer.gameboard.hand.refill()
 			
-			while tamer.gameboard.hand.cards.get_child_count() > 0:
-				var card = tamer.gameboard.hand.cards.get_child(0)
-				tamer.gameboard.hand.cards.remove_child(card)
-				libra.add_card(side, card)
+			for _i in libra.capacity:
+				var beast = tamer.domain.dormant.pull_beast()
+				libra.add_beast(side, beast)
 		
 		if libra.comparison.subtype != "equal" and libra.comparison.subtype != "similar":
 			var tamers = {}
@@ -80,7 +79,7 @@ func next_turn() -> void:
 					tamers.winner = get("right")
 					tamers.loser = get("left")
 			
-			libra.give_cards_to_tamer(tamers.winner)
+			libra.give_beasts_to_tamer(tamers.winner)
 			tamers.loser.health.get_damage(libra.get_damage())
 		
 		if hunger:

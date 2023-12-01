@@ -1,11 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjkf0au6hyakd"]
-
-[ext_resource type="Script" path="res://scene/1/prestige.gd" id="1_n0x65"]
-[ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="2_c8ntc"]
+[gd_scene load_steps=2 format=3 uid="uid://bo6tj71u2ottp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
-[node name="Prestige" type="MarginContainer"]
+[node name="Anchor" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,12 +17,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_n0x65")
 
 [node name="BG" type="Panel" parent="."]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
-
-[node name="Couple" parent="." instance=ExtResource("2_c8ntc")]
-layout_mode = 2

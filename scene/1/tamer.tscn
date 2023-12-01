@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scene/1/tamer.gd" id="1_nrsdf"]
 [ext_resource type="PackedScene" uid="uid://5mwapytb61xe" path="res://scene/1/health.tscn" id="2_4bdf8"]
-[ext_resource type="PackedScene" uid="uid://dtop6ce8ht5b" path="res://scene/1/gameboard.tscn" id="2_uprbp"]
+[ext_resource type="PackedScene" uid="uid://dtop6ce8ht5b" path="res://scene/1/domain.tscn" id="2_uprbp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -35,5 +35,5 @@ alignment = 1
 [node name="Health" parent="VBox" instance=ExtResource("2_4bdf8")]
 layout_mode = 2
 
-[node name="Gameboard" parent="VBox" instance=ExtResource("2_uprbp")]
+[node name="Domain" parent="VBox" instance=ExtResource("2_uprbp")]
 layout_mode = 2

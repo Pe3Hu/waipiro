@@ -40,7 +40,7 @@ func init_num() -> void:
 
 func init_dict() -> void:
 	init_neighbor()
-	init_card()
+	init_beast()
 	
 	dict.thousand = {}
 	dict.thousand[""] = "K"
@@ -92,12 +92,12 @@ func init_neighbor() -> void:
 	]
 
 
-func init_card() -> void:
-	dict.card = {}
-	dict.card.count = {}
+func init_beast() -> void:
+	dict.beast = {}
+	dict.beast.count = {}
 	
 	for rank in arr.rank:
-		dict.card.count[rank] = arr.rank.front() + arr.rank.back() - rank
+		dict.beast.count[rank] = arr.rank.front() + arr.rank.back() - rank
 
 func init_emptyjson() -> void:
 	dict.emptyjson = {}
@@ -122,10 +122,11 @@ func init_node() -> void:
 
 func init_scene() -> void:
 	scene.tamer = load("res://scene/1/tamer.tscn")
-	scene.card = load("res://scene/1/card.tscn")
 	
 	scene.arena = load("res://scene/2/arena.tscn")
-	pass
+	
+	scene.beast = load("res://scene/3/beast.tscn")
+	scene.link = load("res://scene/3/link.tscn")
 
 
 func init_vec():

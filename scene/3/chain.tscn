@@ -1,12 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmqtjipeom15o"]
+[gd_scene load_steps=4 format=3 uid="uid://c30peyr85xmtg"]
 
-[ext_resource type="Script" path="res://scene/1/card.gd" id="1_p3ovp"]
-[ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="3_ui3cu"]
+[ext_resource type="Script" path="res://scene/3/chain.gd" id="1_cetxr"]
+[ext_resource type="PackedScene" uid="uid://bo6tj71u2ottp" path="res://scene/3/anchor.tscn" id="2_q5ewa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
-bg_color = Color(0.486275, 0.486275, 0.486275, 1)
 
-[node name="Card" type="MarginContainer"]
+[node name="Chain" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,16 +20,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_p3ovp")
+script = ExtResource("1_cetxr")
 
 [node name="BG" type="Panel" parent="."]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="Couple" parent="VBox" instance=ExtResource("3_ui3cu")]
+[node name="Links" type="HBoxContainer" parent="HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Anchor" parent="HBox" instance=ExtResource("2_q5ewa")]
 layout_mode = 2

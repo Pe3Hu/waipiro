@@ -1,16 +1,16 @@
 extends MarginContainer
 
 
-@onready var couple = $VBox/Couple
+@onready var marker = $VBox/Marker
 @onready var bg = $BG
 
-var gameboard = null
+var domain = null
 var sustenance = null
 var victims = 0
 
 
 func set_attributes(input_: Dictionary) -> void:
-	gameboard = input_.gameboard
+	domain = input_.domain
 	sustenance = input_.sustenance
 	
 	set_icons(input_)
@@ -22,18 +22,18 @@ func set_icons(input_: Dictionary) -> void:
 	input.type = "suit"
 	input.subtype = input_.suit#sustenance
 	input.value = input_.rank
-	couple.set_attributes(input)
+	marker.set_attributes(input)
 	
 	var style = StyleBoxFlat.new()
 	bg.set("theme_override_styles/panel", style)
 
 
 func get_suit() -> String:
-	return couple.title.subtype
+	return marker.title.subtype
 
 
 func get_rank() -> int:
-	return couple.stack.get_number()
+	return marker.stack.get_number()
 
 
 func add_victim(victim_: MarginContainer) -> void:
@@ -49,4 +49,4 @@ func add_victim(victim_: MarginContainer) -> void:
 		"predator":
 			value = round(victim_.get_rank() * 0.5)
 	
-	couple.stack.change_number(value)
+	marker.stack.change_number(value)

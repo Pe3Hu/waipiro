@@ -1,7 +1,7 @@
 extends MarginContainer
 
 
-@onready var gameboard = $VBox/Gameboard
+@onready var domain = $VBox/Domain
 @onready var health = $VBox/Health
 
 var cradle = null
@@ -17,14 +17,13 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	var input = {}
 	input.tamer = self
-	gameboard.set_attributes(input)
+	domain.set_attributes(input)
 	input.limits = {}
 	input.limits.vigor = 0.25
 	input.limits.standard = 0.5
 	input.limits.fatigue = 0.25
 	input.total = 100
 	health.set_attributes(input)
-
 
 
 func quench_hunger() -> void:
@@ -34,8 +33,8 @@ func quench_hunger() -> void:
 	for sustenance in Global.arr.sustenance:
 		hunters[sustenance] = []
 	
-	for card in gameboard.discard.cards.get_children():
-		if card.gameboard == gameboard:
+	for card in domain.discard.cards.get_children():
+		if card.domain == domain:
 			hunters[card.sustenance].append(card)
 		else:
 			victims.append(card)
@@ -58,8 +57,8 @@ func quench_hunger() -> void:
 					victim = victims.pick_random()
 					victims.erase(victim)
 			
-			gameboard.discard.cards.remove_child(victim)
+			domain.discard.cards.remove_child(victim)
 			hunter.add_victim(victim)
 	
 	for victim in victims:
-		gameboard.discard.cards.remove_child(victim)
+		domain.discard.cards.remove_child(victim)

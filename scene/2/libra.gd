@@ -1,16 +1,18 @@
 extends MarginContainer
 
 
-@onready var cards = $VBox/Cards
+@onready var beasts = $VBox/Beasts
 @onready var left = $VBox/HBox/Left
 @onready var comparison = $VBox/HBox/Comparison
 @onready var right = $VBox/HBox/Right
 
 var arena = null
+var capacity = null
 
 
 func set_attributes(input_: Dictionary) -> void:
 	arena = input_.arena
+	capacity = 1
 	
 	init_icons()
 	reset_icons()
@@ -38,10 +40,10 @@ func reset_icons() -> void:
 	comparison.custom_minimum_size = Vector2(Global.vec.size.sixteen*1.5)
 
 
-func add_card(side_: String, card_: MarginContainer) -> void:
-	cards.add_child(card_)
+func add_beast(side_: String, beast_: MarginContainer) -> void:
+	beasts.add_child(beast_)
 	var icon = get(side_)
-	icon.change_number(card_.get_rank())
+	icon.change_number(beast_.get_rank())
 	update_comparison()
 
 
@@ -60,11 +62,11 @@ func update_comparison() -> void:
 	comparison.custom_minimum_size = Vector2(Global.vec.size.sixteen*1.5)
 
 
-func give_cards_to_tamer(tamer_: MarginContainer) -> void:
-	while cards.get_child_count() > 0:
-		var card = cards.get_child(0)
-		cards.remove_child(card)
-		tamer_.gameboard.discard.cards.add_child(card)
+func give_beasts_to_tamer(tamer_: MarginContainer) -> void:
+	while beasts.get_child_count() > 0:
+		var beast = beasts.get_child(0)
+		beasts.remove_child(beast)
+		tamer_.gameboard.disbeast.beasts.add_child(beast)
 
 
 func get_damage() -> int:

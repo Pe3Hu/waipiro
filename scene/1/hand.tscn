@@ -1,6 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://vmnbghswrs0l"]
+[gd_scene load_steps=3 format=3 uid="uid://e0awcx0he7id"]
 
-[ext_resource type="Script" path="res://scene/1/hand.gd" id="1_u8ae7"]
+[sub_resource type="GDScript" id="GDScript_bt1me"]
+script/source = "extends MarginContainer
+
+
+@onready var cards = $Cards
+
+var gameboard = null
+var capacity = null
+
+
+func set_attributes(input_: Dictionary) -> void:
+	gameboard = input_.gameboard
+	
+	capacity = 1
+	#update_capacity()
+
+
+#func update_capacity() -> void:
+	#capacity = 0
+	#
+	#for subtype in Global.arr.prestige:
+		#var prestige = gameboard.get(subtype)
+		#capacity += prestige.couple.stack.get_number()
+ 
+
+func refill() -> void:
+	while cards.get_child_count() < capacity and gameboard.tamer.arena.winner == null:# and gameboard.discard.cards.get_child_count() > 0:
+		var card = gameboard.pull_random_card()
+		
+		if card != null:
+			add_card(card)
+
+
+func add_card(card_: MarginContainer) -> void:
+	cards.add_child(card_)
+
+
+func refill_based_on_card_indexs(indexs_: Array) -> void:
+	for index in indexs_:
+		draw_indexed_card(index)
+
+
+func draw_indexed_card(index_: int) -> void:
+	var card = gameboard.pull_indexed_card(index_)
+	add_card(card)
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -19,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_u8ae7")
+script = SubResource("GDScript_bt1me")
 
 [node name="BG" type="Panel" parent="."]
 visible = false
