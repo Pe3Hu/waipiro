@@ -25,15 +25,6 @@ func init_starter_kit_beasts() -> void:
 			input.domain = self
 			input.rank = rank
 			input.suit = suit
-			input.sustenance = "predator"
-			var index = Global.arr.rank.find(rank)
-			var last = Global.arr.rank.size()-1
-			
-			match index:
-				0:
-					input.sustenance = "scavenger"
-				last:
-					input.sustenance = "herbivore"
 			
 			for _i in Global.dict.beast.count[rank]:
 				var beast = Global.scene.beast.instantiate()

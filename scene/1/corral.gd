@@ -14,13 +14,13 @@ func reshuffle() -> void:
 	var _beasts = []
 	
 	while beasts.get_child_count() > 0:
-		var beast = get_child_count()
+		var beast = pull_beast()
 		_beasts.append(beast)
 	
 	_beasts.shuffle()
 	
 	for beast in _beasts:
-		_beasts.add_child(beast)
+		beasts.add_child(beast)
 
 
 func pull_beast() -> Variant:

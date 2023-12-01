@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmqtjipeom15o"]
+[gd_scene load_steps=5 format=3 uid="uid://dmqtjipeom15o"]
 
 [ext_resource type="Script" path="res://scene/3/beast.gd" id="1_8ciyh"]
 [ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="2_yyx1b"]
+[ext_resource type="PackedScene" uid="uid://c30peyr85xmtg" path="res://scene/3/chain.tscn" id="3_g7pwu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 bg_color = Color(0.486275, 0.486275, 0.486275, 1)
 
-[node name="Card" type="MarginContainer"]
+[node name="Beast" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,9 +29,12 @@ visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="Marker" parent="VBox" instance=ExtResource("2_yyx1b")]
+[node name="Marker" parent="HBox" instance=ExtResource("2_yyx1b")]
+layout_mode = 2
+
+[node name="Chain" parent="HBox" instance=ExtResource("3_g7pwu")]
 layout_mode = 2

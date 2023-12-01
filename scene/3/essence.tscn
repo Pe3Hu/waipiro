@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://iu1cq1e5uc7"]
+[gd_scene load_steps=4 format=3 uid="uid://u8apjlk3aoaw"]
 
-[ext_resource type="Script" path="res://scene/1/corral.gd" id="1_qdpl1"]
+[ext_resource type="Script" path="res://scene/3/essence.gd" id="1_yfg35"]
+[ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="2_7h50i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
-[node name="Corral" type="MarginContainer"]
+[node name="Essence" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -19,12 +20,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_qdpl1")
+script = ExtResource("1_yfg35")
 
 [node name="BG" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Beasts" type="GridContainer" parent="."]
+[node name="Couple" parent="." instance=ExtResource("2_7h50i")]
 layout_mode = 2

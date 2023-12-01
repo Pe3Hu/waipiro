@@ -21,3 +21,13 @@ res://scene/1/hand.tscn
 res://scene/2/arena.gd
 res://scene/2/libra.tscn
 res://scene/2/libra.gd
+res://scene/0/icon.gd
+res://scene/0/sketch.gd
+res://scene/0/couple.gd
+res://scene/3/anchor.gd
+res://scene/3/essence.tscn
+res://scene/3/link.gd
+res://scene/1/state.gd
+res://scene/1/health.gd
+res://scene/3/essence.gd
+res://scene/0/icon.tscn

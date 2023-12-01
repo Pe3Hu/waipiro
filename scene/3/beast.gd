@@ -1,18 +1,20 @@
 extends MarginContainer
 
 
-@onready var marker = $VBox/Marker
-@onready var bg = $BG
+@onready var marker = $HBox/Marker
+@onready var chain = $HBox/Chain
 
 var domain = null
-var sustenance = null
-var victims = 0
+var index = 0
 
 
 func set_attributes(input_: Dictionary) -> void:
 	domain = input_.domain
-	sustenance = input_.sustenance
+	index = Global.num.index.beast
+	Global.num.index.beast += 1
 	
+	input_.beast = self
+	chain.set_attributes(input_)
 	set_icons(input_)
 
 
@@ -21,32 +23,11 @@ func set_icons(input_: Dictionary) -> void:
 	input.proprietor = self
 	input.type = "suit"
 	input.subtype = input_.suit#sustenance
-	input.value = input_.rank
+	input.value = index
 	marker.set_attributes(input)
-	
-	var style = StyleBoxFlat.new()
-	bg.set("theme_override_styles/panel", style)
 
 
 func get_suit() -> String:
 	return marker.title.subtype
 
 
-func get_rank() -> int:
-	return marker.stack.get_number()
-
-
-func add_victim(victim_: MarginContainer) -> void:
-	var value = null
-	victims += 1
-	#victims.append(victim_)
-	
-	match sustenance:
-		"scavenger":
-			value = victim_.get_rank()
-		"herbivore":
-			value = 1
-		"predator":
-			value = round(victim_.get_rank() * 0.5)
-	
-	marker.stack.change_number(value)

@@ -43,7 +43,8 @@ func reset_icons() -> void:
 func add_beast(side_: String, beast_: MarginContainer) -> void:
 	beasts.add_child(beast_)
 	var icon = get(side_)
-	icon.change_number(beast_.get_rank())
+	var value = 1#beast_.get_rank()
+	icon.change_number(value)
 	update_comparison()
 
 
@@ -66,7 +67,7 @@ func give_beasts_to_tamer(tamer_: MarginContainer) -> void:
 	while beasts.get_child_count() > 0:
 		var beast = beasts.get_child(0)
 		beasts.remove_child(beast)
-		tamer_.gameboard.disbeast.beasts.add_child(beast)
+		tamer_.domain.prey.beasts.add_child(beast)
 
 
 func get_damage() -> int:

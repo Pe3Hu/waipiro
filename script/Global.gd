@@ -24,18 +24,33 @@ func _ready() -> void:
 
 func init_arr() -> void:
 	arr.element = ["aqua", "wind", "fire", "earth"]
-	arr.rank = [1, 2, 3, 4, 5]#, 6]
-	arr.suit = ["aqua", "wind", "fire", "earth"]
+	arr.rank = [4, 5, 6, 7, 8]
+	arr.suit = ["aqua"]#, "wind"]#, "fire", "earth"]
 	arr.side = ["left", "right"]
 	arr.prestige = ["senior", "junior"]
 	arr.counter = ["cycle", "turn"]
 	arr.sustenance = ["scavenger", "herbivore", "predator"]
 	arr.state = ["vigor", "standard", "fatigue"]
+	arr.link = ["inborn", "young", "mature", "old"]
+	arr.age = ["young", "mature", "old", "ancient"]
+	arr.aspect = ["dexterity", "strength"]
+	arr.essence = ["innovation", "legacy", "ascension", "destiny"]
 
 
 func init_num() -> void:
 	num.index = {}
 	num.index.tamer = 0
+	num.index.beast = 0
+	
+	num.aspect = {}
+	num.aspect.min = 1
+	
+	num.link = {}
+	num.link.inborn = 2
+	
+	num.essence = {}
+	num.essence.ascension = 1
+	
 
 
 func init_dict() -> void:
@@ -97,7 +112,7 @@ func init_beast() -> void:
 	dict.beast.count = {}
 	
 	for rank in arr.rank:
-		dict.beast.count[rank] = arr.rank.front() + arr.rank.back() - rank
+		dict.beast.count[rank] = 1 + arr.rank.back() - rank
 
 func init_emptyjson() -> void:
 	dict.emptyjson = {}
@@ -136,12 +151,12 @@ func init_vec():
 	vec.size.number = Vector2(5, 32)
 	vec.size.sixteen = Vector2(16, 16)
 	
-	vec.size.aspect = Vector2(32, 32)
 	vec.size.box = Vector2(100, 100)
 	vec.size.bar = Vector2(120, 12)
 	
 	vec.size.state = Vector2(100, 12)
 	vec.size.prestige = Vector2(32, 32)
+	vec.size.essence = Vector2(32, 32)
 	
 	init_window_size()
 
@@ -166,7 +181,16 @@ func init_color():
 	color.state.fatigue = {}
 	color.state.fatigue.fill = Color.from_hsv(0, 1, 0.9)
 	color.state.fatigue.background = Color.from_hsv(0, 0.25, 0.9)
-
+	
+	color.aspect = {}
+	color.aspect.dexterity = Color.from_hsv(120 / h, 0.9, 0.7)
+	color.aspect.strength = Color.from_hsv(0 / h, 0.9, 0.7)
+	
+	color.link = {}
+	color.link.inborn = Color.from_hsv(60 / h, 0.9, 0.7)
+	color.link.young = Color.from_hsv(150 / h, 0.9, 0.7)
+	color.link.mature = Color.from_hsv(210 / h, 0.9, 0.7)
+	color.link.old = Color.from_hsv(270 / h, 0.9, 0.7)
 
 
 func save(path_: String, data_: String):

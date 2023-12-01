@@ -25,7 +25,7 @@ func set_attributes(input_: Dictionary) -> void:
 		add_tamer(tamer)
 	
 	init_counters()
-	next_turn()
+	next_cycle()
 
 
 func add_tamer(tamer_: MarginContainer) -> void:
@@ -69,18 +69,18 @@ func next_turn() -> void:
 				libra.add_beast(side, beast)
 		
 		if libra.comparison.subtype != "equal" and libra.comparison.subtype != "similar":
-			var tamers = {}
+			var _tamers = {}
 			
 			match libra.comparison.subtype:
 				"greater":
-					tamers.winner = get("left")
-					tamers.loser = get("right")
+					_tamers.winner = get("left")
+					_tamers.loser = get("right")
 				"less":
-					tamers.winner = get("right")
-					tamers.loser = get("left")
+					_tamers.winner = get("right")
+					_tamers.loser = get("left")
 			
-			libra.give_beasts_to_tamer(tamers.winner)
-			tamers.loser.health.get_damage(libra.get_damage())
+			libra.give_beasts_to_tamer(_tamers.winner)
+			_tamers.loser.health.get_damage(libra.get_damage())
 		
 		if hunger:
 			for side in Global.arr.side:
@@ -96,6 +96,12 @@ func next_cycle() -> void:
 	turn.stack.set_number(0)
 	cycle.stack.change_number(1)
 	hunger = false
+	
+	for side in Global.arr.side:
+		var tamer = get(side)
+		tamer.domain.dormant.reshuffle()
+	
+	next_turn()
 
 
 func _on_timer_timeout():

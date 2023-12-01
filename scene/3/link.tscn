@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxdr0ye36dwaf"]
+[gd_scene load_steps=4 format=3 uid="uid://cxdr0ye36dwaf"]
+
+[ext_resource type="PackedScene" uid="uid://u8apjlk3aoaw" path="res://scene/3/essence.tscn" id="1_dxl6a"]
+[ext_resource type="Script" path="res://scene/3/link.gd" id="1_kuovy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
 [node name="Link" type="MarginContainer"]
-custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -17,8 +19,25 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_kuovy")
 
 [node name="BG" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Innovation" parent="VBox" instance=ExtResource("1_dxl6a")]
+layout_mode = 2
+
+[node name="Legacy" parent="VBox" instance=ExtResource("1_dxl6a")]
+layout_mode = 2
+
+[node name="Ascension" parent="VBox" instance=ExtResource("1_dxl6a")]
+layout_mode = 2
+
+[node name="Destiny" parent="VBox" instance=ExtResource("1_dxl6a")]
+layout_mode = 2

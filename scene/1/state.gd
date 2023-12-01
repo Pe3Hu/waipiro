@@ -32,29 +32,24 @@ func set_colors() -> void:
 func update_value(value_: String, shift_: int) -> void:
 	match value_:
 		"current":
-			bar.value += shift_
-			
-			if bar.value < 0:
-				health.update_type()
-				visible = false
-				health.get_damage(-bar.value)
+			if bar.value + shift_ < 0:
+				var value = abs(bar.value + shift_)
 				bar.value = 0
+				health.update_state()
+				visible = false
+				health.get_damage(value)
 				
-				if type == "fatigue":
-					health.tamer.arena.set_loser(health.tamer)
+			else:
+				bar.value += shift_
+			
+			if type == "fatigue" and bar.value == 0:
+				health.tamer.arena.set_loser(health.tamer)
 			
 			value.text = str(bar.value)
 		"maximum":
 			bar.max_value += shift_
 
 
-func get_percentage() -> int:
-	return floor(bar.value * 100 / bar.max_value)
-
-
 func reset() -> void:
 	bar.value = bar.max_value
 
-
-func _on_progress_bar_changed():
-	pass # Replace with function body.

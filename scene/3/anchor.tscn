@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo6tj71u2ottp"]
+[gd_scene load_steps=4 format=3 uid="uid://bo6tj71u2ottp"]
+
+[ext_resource type="Script" path="res://scene/3/anchor.gd" id="1_262ne"]
+[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_jrdox"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -17,8 +20,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_262ne")
 
 [node name="BG" type="Panel" parent="."]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
+
+[node name="Aspects" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Dexterity" parent="Aspects" instance=ExtResource("2_jrdox")]
+layout_mode = 2
+
+[node name="Strength" parent="Aspects" instance=ExtResource("2_jrdox")]
+layout_mode = 2

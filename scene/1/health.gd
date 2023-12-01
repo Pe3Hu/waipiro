@@ -46,7 +46,7 @@ func update_state() -> void:
 	for _state in Global.arr.state:
 		var indicator = get(_state)
 		
-		if indicator.get_percentage() > 0:
+		if indicator.bar.value > 0:
 			state = _state
 			break
 
