@@ -33,11 +33,11 @@ func update_value(value_: String, shift_: int) -> void:
 	match value_:
 		"current":
 			if bar.value + shift_ < 0:
-				var value = abs(bar.value + shift_)
+				var _value = abs(bar.value + shift_)
 				bar.value = 0
 				health.update_state()
 				visible = false
-				health.get_damage(value)
+				health.get_damage(_value)
 				
 			else:
 				bar.value += shift_

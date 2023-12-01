@@ -33,28 +33,29 @@ func spread_aspects() -> void:
 	
 	for aspect in Global.arr.aspect:
 		var input = {}
-		input.chain = self
 		input.aspect = aspect
-		input.type = get_next_link_type()
 		input.legacy = Global.num.link.inborn
-		input.ascension = Global.num.essence.ascension
+		add_link(input)
 		free -= input.legacy
 		
-		var link = Global.scene.link.instantiate()
-		links.add_child(link)
-		link.set_attributes(input)
 	
 	for _i in free:
 		var input = {}
-		input.chain = self
 		input.aspect = Global.arr.aspect.pick_random()
-		input.type = get_next_link_type()
 		input.innovation = 1
-		input.ascension = Global.num.essence.ascension
-		
-		var link = Global.scene.link.instantiate()
-		links.add_child(link)
-		link.set_attributes(input)
+		add_link(input)
+
+
+func add_link(input_: Dictionary) -> void:
+	input_.chain = self
+	input_.type = get_next_link_type()
+	
+	if !input_.has("ascension"):
+		input_.ascension = Global.num.essence.ascension
+	
+	var link = Global.scene.link.instantiate()
+	links.add_child(link)
+	link.set_attributes(input_)
 
 
 func get_next_link_type() -> Variant:

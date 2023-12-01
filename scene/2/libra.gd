@@ -43,7 +43,7 @@ func reset_icons() -> void:
 func add_beast(side_: String, beast_: MarginContainer) -> void:
 	beasts.add_child(beast_)
 	var icon = get(side_)
-	var value = 1#beast_.get_rank()
+	var value = beast_.chain.anchor.cacl_impact()#beast_.get_rank()
 	icon.change_number(value)
 	update_comparison()
 
@@ -67,7 +67,17 @@ func give_beasts_to_tamer(tamer_: MarginContainer) -> void:
 	while beasts.get_child_count() > 0:
 		var beast = beasts.get_child(0)
 		beasts.remove_child(beast)
-		tamer_.domain.prey.beasts.add_child(beast)
+		
+		if beast.domain == tamer_.domain:
+			tamer_.domain.hunter.beasts.add_child(beast)
+		else:
+			tamer_.domain.prey.beasts.add_child(beast)
+	
+	var winner = tamer_.domain.hunter.beasts.get_children().back()
+	var loser = tamer_.domain.prey.beasts.get_children().back()
+	
+	if winner.chain.anchor.multiplication < loser.chain.anchor.multiplication:
+		winner.deed = true
 
 
 func get_damage() -> int:

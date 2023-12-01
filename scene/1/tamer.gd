@@ -8,6 +8,7 @@ var cradle = null
 var arena = null
 var side = null
 var index = null
+var opponent = null
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -25,40 +26,3 @@ func set_attributes(input_: Dictionary) -> void:
 	input.total = 100
 	health.set_attributes(input)
 
-
-func quench_hunger() -> void:
-	var victims = []
-	var hunters = {}
-	
-	for sustenance in Global.arr.sustenance:
-		hunters[sustenance] = []
-	
-	for card in domain.discard.cards.get_children():
-		if card.domain == domain:
-			hunters[card.sustenance].append(card)
-		else:
-			victims.append(card)
-	
-	victims.sort_custom(func(a, b): return a.couple.stack.get_number() < b.couple.stack.get_number())
-	
-	for sustenance in hunters:
-		for hunter in hunters[sustenance]:
-			if victims.is_empty():
-				return
-			
-			var victim = null
-			
-			match sustenance:
-				"scavenger":
-					victim = victims.pop_back()
-				"herbivore":
-					victim = victims.pop_front()
-				"predator":
-					victim = victims.pick_random()
-					victims.erase(victim)
-			
-			domain.discard.cards.remove_child(victim)
-			hunter.add_victim(victim)
-	
-	for victim in victims:
-		domain.discard.cards.remove_child(victim)

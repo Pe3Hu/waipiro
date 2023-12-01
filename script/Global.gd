@@ -25,7 +25,7 @@ func _ready() -> void:
 func init_arr() -> void:
 	arr.element = ["aqua", "wind", "fire", "earth"]
 	arr.rank = [4, 5, 6, 7, 8]
-	arr.suit = ["aqua"]#, "wind"]#, "fire", "earth"]
+	arr.suit = ["aqua", "wind", "fire", "earth"]
 	arr.side = ["left", "right"]
 	arr.prestige = ["senior", "junior"]
 	arr.counter = ["cycle", "turn"]
@@ -35,6 +35,7 @@ func init_arr() -> void:
 	arr.age = ["young", "mature", "old", "ancient"]
 	arr.aspect = ["dexterity", "strength"]
 	arr.essence = ["innovation", "legacy", "ascension", "destiny"]
+	arr.corral = ["dormant", "hunter", "prey"]
 
 
 func init_num() -> void:

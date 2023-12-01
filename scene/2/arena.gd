@@ -11,7 +11,7 @@ var battleground = null
 var left = null
 var right = null
 var winner = null
-var hunger = false
+var hunger = true
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -26,6 +26,9 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	init_counters()
 	next_cycle()
+	
+	for _i in 14:
+		next_turn()
 
 
 func add_tamer(tamer_: MarginContainer) -> void:
@@ -40,6 +43,8 @@ func add_tamer(tamer_: MarginContainer) -> void:
 	else:
 		right = tamer_
 		tamer_.side = "right"
+		left.opponent = tamer_
+		tamer_.opponent = left
 
 
 func init_counters() -> void:
@@ -85,7 +90,7 @@ func next_turn() -> void:
 		if hunger:
 			for side in Global.arr.side:
 				var tamer = get(side) 
-				tamer.quench_hunger()
+				tamer.domain.quench_hunger()
 			
 			next_cycle()
 	else:
@@ -95,12 +100,12 @@ func next_turn() -> void:
 func next_cycle() -> void:
 	turn.stack.set_number(0)
 	cycle.stack.change_number(1)
-	hunger = false
 	
 	for side in Global.arr.side:
 		var tamer = get(side)
 		tamer.domain.dormant.reshuffle()
 	
+	hunger = false
 	next_turn()
 
 
