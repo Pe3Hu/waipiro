@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://da80rvclernjh"]
+[gd_scene load_steps=6 format=3 uid="uid://da80rvclernjh"]
 
 [ext_resource type="Script" path="res://scene/1/tamer.gd" id="1_nrsdf"]
 [ext_resource type="PackedScene" uid="uid://5mwapytb61xe" path="res://scene/1/health.tscn" id="2_4bdf8"]
 [ext_resource type="PackedScene" uid="uid://dtop6ce8ht5b" path="res://scene/1/domain.tscn" id="2_uprbp"]
+[ext_resource type="PackedScene" uid="uid://cw46xru73vpst" path="res://scene/1/source.tscn" id="3_ei4wt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -28,12 +29,18 @@ visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="VBox" type="HBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="Health" parent="VBox" instance=ExtResource("2_4bdf8")]
+[node name="VBox" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 
-[node name="Domain" parent="VBox" instance=ExtResource("2_uprbp")]
+[node name="Health" parent="HBox/VBox" instance=ExtResource("2_4bdf8")]
+layout_mode = 2
+
+[node name="Source" parent="HBox/VBox" instance=ExtResource("3_ei4wt")]
+layout_mode = 2
+
+[node name="Domain" parent="HBox" instance=ExtResource("2_uprbp")]
 layout_mode = 2

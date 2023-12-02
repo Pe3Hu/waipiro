@@ -1,8 +1,9 @@
 extends MarginContainer
 
 
-@onready var domain = $VBox/Domain
-@onready var health = $VBox/Health
+@onready var domain = $HBox/Domain
+@onready var health = $HBox/VBox/Health
+@onready var source = $HBox/VBox/Source
 
 var cradle = null
 var arena = null
@@ -19,6 +20,7 @@ func set_attributes(input_: Dictionary) -> void:
 	var input = {}
 	input.tamer = self
 	domain.set_attributes(input)
+	source.set_attributes(input)
 	input.limits = {}
 	input.limits.vigor = 0.25
 	input.limits.standard = 0.5

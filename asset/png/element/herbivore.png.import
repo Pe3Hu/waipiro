@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd8a0x5rm2fxl"
-path="res://.godot/imported/scavenger.png-f69dfbec76ad537d2116674e2a145653.ctex"
+uid="uid://ch5634ux0p4du"
+path="res://.godot/imported/herbivore.png-b04c6b2f64dfe97c11b09b2d35577aa1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/suit/scavenger.png"
-dest_files=["res://.godot/imported/scavenger.png-f69dfbec76ad537d2116674e2a145653.ctex"]
+source_file="res://asset/png/element/herbivore.png"
+dest_files=["res://.godot/imported/herbivore.png-b04c6b2f64dfe97c11b09b2d35577aa1.ctex"]
 
 [params]
 

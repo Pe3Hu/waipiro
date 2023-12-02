@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bym0vrh7nead6"
-path="res://.godot/imported/aqua.png-970f0ad313080b830a092907641d545a.ctex"
+uid="uid://dec4l7uc711s4"
+path="res://.godot/imported/wind.png-30168ce295883fc87076110e82275bda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/suit/aqua.png"
-dest_files=["res://.godot/imported/aqua.png-970f0ad313080b830a092907641d545a.ctex"]
+source_file="res://asset/png/element/wind.png"
+dest_files=["res://.godot/imported/wind.png-30168ce295883fc87076110e82275bda.ctex"]
 
 [params]
 

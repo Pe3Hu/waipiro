@@ -1,0 +1,190 @@
+[
+ {
+  "title": "horse",
+  "dexterity": 1.6,
+  "strength": 0.8,
+  "evolution": 1,
+  "pedigree": "wind of change",
+  "aqua": 2,
+  "wind": 3
+ },
+ {
+  "title": "raven",
+  "dexterity": 1.4,
+  "strength": 1,
+  "evolution": 1,
+  "pedigree": "shadow of light",
+  "wind": 2,
+  "fire": 3
+ },
+ {
+  "title": "fox",
+  "dexterity": 1.2000000000000002,
+  "strength": 1.2,
+  "evolution": 1,
+  "pedigree": "unity of many",
+  "aqua": 1,
+  "wind": 1,
+  "fire": 1,
+  "earth": 1
+ },
+ {
+  "title": "snake",
+  "dexterity": 1.0000000000000002,
+  "strength": 1.4,
+  "evolution": 1,
+  "pedigree": "trail of doom",
+  "fire": 2,
+  "earth": 3
+ },
+ {
+  "title": "turtle",
+  "dexterity": 0.8000000000000003,
+  "strength": 1.6,
+  "evolution": 1,
+  "pedigree": "fury of depth",
+  "aqua": 3,
+  "earth": 2
+ },
+ {
+  "title": "deer",
+  "dexterity": 2.3,
+  "strength": 0.7,
+  "evolution": 2,
+  "pedigree": "wind of change",
+  "aqua": 2,
+  "wind": 3
+ },
+ {
+  "title": "hawk",
+  "dexterity": 1.9,
+  "strength": 1.1,
+  "evolution": 2,
+  "pedigree": "shadow of light",
+  "wind": 2,
+  "fire": 3
+ },
+ {
+  "title": "wolf",
+  "dexterity": 1.5,
+  "strength": 1.5,
+  "evolution": 2,
+  "pedigree": "unity of many",
+  "aqua": 1,
+  "wind": 1,
+  "fire": 1,
+  "earth": 1
+ },
+ {
+  "title": "lizard",
+  "dexterity": 1.1,
+  "strength": 1.9,
+  "evolution": 2,
+  "pedigree": "trail of doom",
+  "fire": 2,
+  "earth": 3
+ },
+ {
+  "title": "octopus",
+  "dexterity": 0.7000000000000001,
+  "strength": 2.3,
+  "evolution": 2,
+  "pedigree": "fury of depth",
+  "aqua": 3,
+  "earth": 2
+ },
+ {
+  "title": "pegasus",
+  "dexterity": 3.8,
+  "strength": 0.6,
+  "evolution": 3,
+  "pedigree": "wind of change",
+  "aqua": 2,
+  "wind": 3
+ },
+ {
+  "title": "roc",
+  "dexterity": 3,
+  "strength": 1.4,
+  "evolution": 3,
+  "pedigree": "shadow of light",
+  "wind": 2,
+  "fire": 3
+ },
+ {
+  "title": "cerberus",
+  "dexterity": 2.2,
+  "strength": 2.2,
+  "evolution": 3,
+  "pedigree": "unity of many",
+  "aqua": 1,
+  "wind": 1,
+  "fire": 1,
+  "earth": 1
+ },
+ {
+  "title": "basilisk",
+  "dexterity": 1.4,
+  "strength": 3,
+  "evolution": 3,
+  "pedigree": "trail of doom",
+  "fire": 2,
+  "earth": 3
+ },
+ {
+  "title": "kraken",
+  "dexterity": 0.6000000000000001,
+  "strength": 3.8,
+  "evolution": 3,
+  "pedigree": "fury of depth",
+  "aqua": 3,
+  "earth": 2
+ },
+ {
+  "title": "unicorn",
+  "dexterity": 6.9,
+  "strength": 0.5,
+  "evolution": 4,
+  "pedigree": "wind of change",
+  "aqua": 2,
+  "wind": 3
+ },
+ {
+  "title": "phoenix",
+  "dexterity": 5.300000000000001,
+  "strength": 2.1,
+  "evolution": 4,
+  "pedigree": "shadow of light",
+  "wind": 2,
+  "fire": 3
+ },
+ {
+  "title": "hydra",
+  "dexterity": 3.7000000000000006,
+  "strength": 3.7,
+  "evolution": 4,
+  "pedigree": "unity of many",
+  "aqua": 1,
+  "wind": 1,
+  "fire": 1,
+  "earth": 1
+ },
+ {
+  "title": "dragon",
+  "dexterity": 2.1000000000000005,
+  "strength": 5.300000000000001,
+  "evolution": 4,
+  "pedigree": "trail of doom",
+  "fire": 2,
+  "earth": 3
+ },
+ {
+  "title": "leviathan",
+  "dexterity": 0.5000000000000004,
+  "strength": 6.9,
+  "evolution": 4,
+  "pedigree": "fury of depth",
+  "aqua": 3,
+  "earth": 2
+ }
+]

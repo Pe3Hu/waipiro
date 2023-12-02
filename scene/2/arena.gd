@@ -71,6 +71,7 @@ func next_turn() -> void:
 			
 			for _i in libra.capacity:
 				var beast = tamer.domain.dormant.pull_beast()
+				tamer.source.update_couple_based_on_beast(beast)
 				libra.add_beast(side, beast)
 		
 		if libra.comparison.subtype != "equal" and libra.comparison.subtype != "similar":
@@ -120,5 +121,3 @@ func set_loser(tamer_: MarginContainer) -> void:
 		if tamer != tamer_:
 			winner = tamer
 			break
-
-

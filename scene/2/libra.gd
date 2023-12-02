@@ -43,7 +43,7 @@ func reset_icons() -> void:
 func add_beast(side_: String, beast_: MarginContainer) -> void:
 	beasts.add_child(beast_)
 	var icon = get(side_)
-	var value = beast_.chain.anchor.cacl_impact()#beast_.get_rank()
+	var value = beast_.chain.anchor.cacl_impact()
 	icon.change_number(value)
 	update_comparison()
 

@@ -37,12 +37,16 @@ func spread_aspects() -> void:
 		input.legacy = Global.num.link.inborn
 		add_link(input)
 		free -= input.legacy
-		
 	
 	for _i in free:
 		var input = {}
-		input.aspect = Global.arr.aspect.pick_random()
 		input.innovation = 1
+		input.aspect = Global.arr.aspect.pick_random()
+		add_link(input)
+	
+	for _i in limits.old.back() - free - 1:
+		var input = {}
+		input.aspect = null
 		add_link(input)
 
 
@@ -62,5 +66,13 @@ func get_next_link_type() -> Variant:
 	for type in limits:
 		if limits[type].has(links.get_child_count()):
 			return type
+	
+	return null
+
+
+func get_next_free_link() -> Variant:
+	for link in links.get_children():
+		if link.aspect == null:
+			return link
 	
 	return null

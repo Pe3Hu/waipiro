@@ -1,8 +1,10 @@
 extends MarginContainer
 
 
-@onready var dexterity = $Aspects/Dexterity
-@onready var strength = $Aspects/Strength
+@onready var dexterityMax = $Aspects/Max/Dexterity
+@onready var strengthMax = $Aspects/Max/Strength
+@onready var dexterityRoll = $Aspects/Roll/Dexterity
+@onready var strengthRoll = $Aspects/Roll/Strength
 
 var chain = null
 var multiplication = null
@@ -15,7 +17,10 @@ func set_attributes(input_: Dictionary) -> void:
 		var input = {}
 		input.type = "number"
 		input.subtype = 0
-		var icon = get(aspect)
+		var icon = get(aspect+"Roll")
+		icon.set_attributes(input)
+		#icon.visible = false
+		icon = get(aspect+"Max")
 		icon.set_attributes(input)
 		icon.bg.visible = true
 		
@@ -33,18 +38,40 @@ func recalc_aspect(aspect_: String) -> void:
 		if link.aspect == aspect_:
 			value += link.get_multiplication_value()
 	
-	var icon = get(aspect_)
+	var icon = get(aspect_+"Max")
 	icon.set_number(value)
 	multiplication = 1
 	
 	for aspect in Global.arr.aspect:
-		icon = get(aspect)
+		icon = get(aspect+"Max")
 		multiplication *= icon.get_number()
 
 
 func cacl_impact() -> int:
-	Global.rng.randomize()
-	var impact = Global.rng.randi_range(0, multiplication)
+	if chain.beast.blessing:
+		for aspect in Global.arr.aspect:
+			var icon = get(aspect+"Max")
+			var blessing = Global.dict.element.blessing[chain.beast.element][aspect]
+			icon.change_number(blessing)
+	
+	var impact = 1
+	
+	for aspect in Global.arr.aspect:
+		var icon = get(aspect+"Max")
+		Global.rng.randomize()
+		var value = Global.rng.randi_range(0, icon.get_number())
+		icon = get(aspect+"Roll")
+		icon.set_number(value)
+		impact *= value
+	
+	if chain.beast.blessing:
+		for aspect in Global.arr.aspect:
+			var icon = get(aspect+"Max")
+			var blessing = Global.dict.element.blessing[chain.beast.element][aspect]
+			icon.change_number(-blessing)
+		
+		chain.beast.blessing = false
+	
 	return impact
 
 
@@ -54,7 +81,7 @@ func get_aspect_based_on(thirst_: String) -> String:
 	for aspect in Global.arr.aspect:
 		aspects.append(aspect)
 	
-	aspects.sort_custom(func(a, b): return get(a).get_number() < get(b).get_number())
+	aspects.sort_custom(func(a, b): return get(a+"Max").get_number() < get(b+"Max").get_number())
 	var aspect = null
 	
 	match thirst_:

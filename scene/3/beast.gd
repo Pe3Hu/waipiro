@@ -5,26 +5,29 @@ extends MarginContainer
 @onready var chain = $HBox/Chain
 
 var domain = null
+var element = null
 var index = 0
 var lucky = [0, 1, 1, 1, 1, 2]
 var deed = false
+var blessing = false
 
 
 func set_attributes(input_: Dictionary) -> void:
 	domain = input_.domain
+	element = input_.element
 	index = Global.num.index.beast
 	Global.num.index.beast += 1
 	
 	input_.beast = self
 	chain.set_attributes(input_)
-	set_icons(input_)
+	set_icons()
 
 
-func set_icons(input_: Dictionary) -> void:
+func set_icons() -> void:
 	var input = {}
 	input.proprietor = self
-	input.type = "suit"
-	input.subtype = input_.suit#sustenance
+	input.type = "tribe"
+	input.subtype = str(domain.tamer.index)
 	input.value = index
 	marker.set_attributes(input)
 
@@ -64,7 +67,9 @@ func assimilation(victim_: MarginContainer) -> void:
 	var thirst = roll_thirst()
 	input.aspect = victim_.chain.anchor.get_aspect_based_on(thirst)
 	Global.rng.randomize()
-	var min = Global.num.aspect.min
-	var max = victim_.chain.anchor.get(input.aspect).get_number()
-	input.innovation = Global.rng.randi_range(min, max)
-	chain.add_link(input)
+	var _min = Global.num.aspect.min
+	var _max = victim_.chain.anchor.get(input.aspect+"Max").get_number()
+	input.type = "innovation"
+	input.value = Global.rng.randi_range(_min, _max)
+	var link = chain.get_next_free_link()
+	link.set_essence_value(input)

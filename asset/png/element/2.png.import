@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch5634ux0p4du"
-path="res://.godot/imported/herbivore.png-9e3e0bb94d483d3cf662cef6f898f123.ctex"
+uid="uid://b1060og0bb7v"
+path="res://.godot/imported/2.png-3165e04189a05cd6e19e84114b25777b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/suit/herbivore.png"
-dest_files=["res://.godot/imported/herbivore.png-9e3e0bb94d483d3cf662cef6f898f123.ctex"]
+source_file="res://asset/png/element/2.png"
+dest_files=["res://.godot/imported/2.png-3165e04189a05cd6e19e84114b25777b.ctex"]
 
 [params]
 

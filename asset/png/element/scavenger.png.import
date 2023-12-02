@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dec4l7uc711s4"
-path="res://.godot/imported/wind.png-fb453c9c6183d5e04302505c93f552f6.ctex"
+uid="uid://dd8a0x5rm2fxl"
+path="res://.godot/imported/scavenger.png-4a3742743fa03a19b08514254c4735ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/suit/wind.png"
-dest_files=["res://.godot/imported/wind.png-fb453c9c6183d5e04302505c93f552f6.ctex"]
+source_file="res://asset/png/element/scavenger.png"
+dest_files=["res://.godot/imported/scavenger.png-4a3742743fa03a19b08514254c4735ac.ctex"]
 
 [params]
 

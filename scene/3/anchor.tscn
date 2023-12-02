@@ -27,13 +27,28 @@ visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Aspects" type="VBoxContainer" parent="."]
+[node name="Aspects" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Max" type="VBoxContainer" parent="Aspects"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Dexterity" parent="Aspects" instance=ExtResource("2_jrdox")]
+[node name="Dexterity" parent="Aspects/Max" instance=ExtResource("2_jrdox")]
 layout_mode = 2
 
-[node name="Strength" parent="Aspects" instance=ExtResource("2_jrdox")]
+[node name="Strength" parent="Aspects/Max" instance=ExtResource("2_jrdox")]
+layout_mode = 2
+
+[node name="Roll" type="VBoxContainer" parent="Aspects"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Dexterity" parent="Aspects/Roll" instance=ExtResource("2_jrdox")]
+layout_mode = 2
+
+[node name="Strength" parent="Aspects/Roll" instance=ExtResource("2_jrdox")]
 layout_mode = 2

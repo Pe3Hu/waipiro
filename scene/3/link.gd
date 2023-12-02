@@ -22,17 +22,16 @@ func set_attributes(input_: Dictionary) -> void:
 
 func set_essences(input_: Dictionary) -> void:
 	for _essence in Global.arr.essence:
-		var input = {}
-		input.link = self
+		var input = Dictionary(input_)
 		input.type = _essence
-		input.aspect = input_.aspect
 		input.value = 0
-		
+	
 		if input_.has(_essence):
 			input.value = input_[_essence]
 		
+		set_essence(input)
+		
 		var essence = get(_essence)
-		essence.set_attributes(input)
 		
 		if custom_minimum_size.x == 0:
 			custom_minimum_size.x = essence.size.x
@@ -44,7 +43,29 @@ func set_essences(input_: Dictionary) -> void:
 	style.bg_color = Global.color.link[type]
 
 
+func set_essence(input_: Dictionary) -> void:
+	input_.link = self
+	var essence = get(input_.type)
+	essence.set_attributes(input_)
+
+
 func get_multiplication_value() -> int:
 	return round(innovation.get_value() + legacy.get_value()) * ascension.get_value()
+
+
+func set_essence_value(input_: Dictionary) -> void:
+	var essence = get(input_.type)
+	essence.couple.stack.set_number(input_.value)
+	set_aspect(input_.aspect)
 	
+	if input_.value > 0:
+		essence.visible = true
 	
+	chain.anchor.recalc_aspect(input_.aspect)
+
+func set_aspect(aspect_: String) -> void:
+	aspect = aspect_
+	
+	for _essence in Global.arr.essence:
+		var essence = get(_essence)
+		essence.update_aspect(aspect)

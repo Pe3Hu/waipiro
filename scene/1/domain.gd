@@ -21,12 +21,11 @@ func set_attributes(input_: Dictionary) -> void:
 
 
 func init_starter_kit_beasts() -> void:
-	#for suit in Global.arr.suit:
 	for rank in Global.arr.rank:
 		var input = {}
 		input.domain = self
 		input.rank = rank
-		input.suit = Global.arr.suit[tamer.index]
+		input.element = Global.arr.element[tamer.index]#Global.arr.element.pick_random()
 		
 		for _i in Global.dict.beast.count[rank]:
 			var beast = Global.scene.beast.instantiate()
@@ -58,7 +57,7 @@ func quench_hunger() -> void:
 			var beast = corral.pull_beast()
 			beasts[type].append(beast)
 	
-		beasts[type].sort_custom(func(a, b): return a.chain.anchor.multiplication < a.chain.anchor.multiplication)
+		beasts[type].sort_custom(func(a, b): return a.chain.anchor.multiplication < b.chain.anchor.multiplication)
 	
 	for beast in beasts.hunter:
 		var contribution = beast.roll_contribution()

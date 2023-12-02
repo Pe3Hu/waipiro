@@ -34,5 +34,12 @@ func set_icons(input_: Dictionary) -> void:
 	couple.set_title_size(Global.vec.size.essence)
 
 
+func update_aspect(aspect_: String) -> void:
+	aspect = aspect_
+	
+	var style = bg.get("theme_override_styles/panel")
+	style.bg_color = Global.color.aspect[aspect]
+
+
 func get_value():
 	return couple.stack.get_number()

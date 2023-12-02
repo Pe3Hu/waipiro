@@ -52,14 +52,15 @@ func init_num() -> void:
 	num.essence = {}
 	num.essence.ascension = 1
 	
+	num.source = {}
+	num.source.limit = 6
+	
 
 
 func init_dict() -> void:
 	init_neighbor()
 	init_beast()
-	
-	dict.thousand = {}
-	dict.thousand[""] = "K"
+	init_totem()
 
 
 func init_neighbor() -> void:
@@ -114,6 +115,25 @@ func init_beast() -> void:
 	
 	for rank in arr.rank:
 		dict.beast.count[rank] = 1 + arr.rank.back() - rank
+	
+	dict.element = {}
+	dict.element.blessing = {}
+	dict.element.blessing.aqua = {}
+	dict.element.blessing.aqua.dexterity = 1
+	dict.element.blessing.aqua.strength = 2
+	dict.element.blessing.wind = {}
+	dict.element.blessing.wind.dexterity = 3
+	dict.element.blessing.wind.strength = 0
+	dict.element.blessing.fire = {}
+	dict.element.blessing.fire.dexterity = 2
+	dict.element.blessing.fire.strength = 1
+	dict.element.blessing.earth = {}
+	dict.element.blessing.earth.dexterity = 0
+	dict.element.blessing.earth.strength = 3
+	
+	dict.thousand = {}
+	dict.thousand[""] = "K"
+
 
 func init_emptyjson() -> void:
 	dict.emptyjson = {}
@@ -130,6 +150,40 @@ func init_emptyjson() -> void:
 				data[key] = emptyjson[key]
 		
 		dict.emptyjson.title[emptyjson.title] = data
+
+
+func init_totem() -> void:
+	dict.totem = {}
+	dict.totem.title = {}
+	dict.totem.evolution = {}
+	dict.totem.pedigree = {}
+	
+	var path = "res://asset/json/waipiro_totem.json"
+	var array = load_data(path)
+	
+	for totem in array:
+		var data = {}
+		data.ascensions = {}
+		data.elements = {}
+		
+		for key in totem:
+			if key != "title":
+				if arr.aspect.has(key):
+					data.ascensions[key] = totem[key]
+				elif arr.element.has(key):
+					data.elements[key] = totem[key]
+				else:
+					data[key] = totem[key]
+		
+		if !dict.totem.evolution.has(totem.evolution):
+			dict.totem.evolution[totem.evolution] = {}
+		
+		if !dict.totem.pedigree.has(totem.pedigree):
+			dict.totem.pedigree[totem.pedigree] = {}
+		
+		dict.totem.title[totem.title] = data
+		dict.totem.evolution[totem.evolution][totem.pedigree] = totem.title
+		dict.totem.pedigree[totem.pedigree][totem.evolution] = totem.title
 
 
 func init_node() -> void:
@@ -186,6 +240,7 @@ func init_color():
 	color.aspect = {}
 	color.aspect.dexterity = Color.from_hsv(120 / h, 0.9, 0.7)
 	color.aspect.strength = Color.from_hsv(0 / h, 0.9, 0.7)
+	color.aspect[null] = Color.from_hsv(240 / h, 0.9, 0.7)
 	
 	color.link = {}
 	color.link.inborn = Color.from_hsv(60 / h, 0.9, 0.7)
