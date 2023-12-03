@@ -34,8 +34,9 @@ func init_arr() -> void:
 	arr.link = ["inborn", "young", "mature", "old"]
 	arr.age = ["young", "mature", "old", "ancient"]
 	arr.aspect = ["dexterity", "strength"]
-	arr.essence = ["innovation", "legacy", "ascension", "destiny"]
+	arr.essence = ["innovation", "legacy", "ascension"]
 	arr.corral = ["dormant", "hunter", "prey"]
+	arr.achievement = ["type", "subtype", "condition"]
 
 
 func init_num() -> void:
@@ -61,6 +62,7 @@ func init_dict() -> void:
 	init_neighbor()
 	init_beast()
 	init_totem()
+	init_achievement()
 
 
 func init_neighbor() -> void:
@@ -186,6 +188,49 @@ func init_totem() -> void:
 		dict.totem.pedigree[totem.pedigree][totem.evolution] = totem.title
 
 
+func init_achievement() -> void:
+	dict.achievement = {}
+	dict.achievement.title = {}
+	dict.achievement.type = {}
+	dict.achievement.subtype = {}
+	dict.achievement.condition = {}
+	dict.libra = {}
+	
+	var path = "res://asset/json/waipiro_achievement.json"
+	var array = load_data(path)
+	
+	for achievement in array:
+		var data = {}
+		
+		for key in achievement:
+			if key != "title":
+				data[key] = achievement[key]
+		
+		for key in dict.achievement:
+			if key != "title":
+				if !dict.achievement[key].has(achievement[key]):
+					dict.achievement[key][achievement[key]] = []
+			
+				dict.achievement[key][achievement[key]].append(achievement.title)
+		
+		dict.achievement.title[achievement.title] = data
+		
+		if !dict.libra.has(achievement.libra):
+			dict.libra[achievement.libra] = []
+		
+		if achievement.subtype != "first" and achievement.subtype != "last":
+			data = {}
+			data.type = achievement.type
+			data.subtype = achievement.subtype
+			data.order = achievement.order
+		
+			if !dict.libra[achievement.libra].has(data):
+				dict.libra[achievement.libra].append(data)
+	
+	for key in dict.libra:
+		dict.libra[key].sort_custom(func(a, b): return a.order < b.order)
+
+
 func init_node() -> void:
 	node.game = get_node("/root/Game")
 
@@ -197,6 +242,7 @@ func init_scene() -> void:
 	
 	scene.beast = load("res://scene/3/beast.tscn")
 	scene.link = load("res://scene/3/link.tscn")
+	scene.achievement = load("res://scene/3/achievement.tscn")
 
 
 func init_vec():

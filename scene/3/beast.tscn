@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmqtjipeom15o"]
+[gd_scene load_steps=6 format=3 uid="uid://dmqtjipeom15o"]
 
 [ext_resource type="Script" path="res://scene/3/beast.gd" id="1_8ciyh"]
 [ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="2_yyx1b"]
 [ext_resource type="PackedScene" uid="uid://c30peyr85xmtg" path="res://scene/3/chain.tscn" id="3_g7pwu"]
+[ext_resource type="PackedScene" uid="uid://dbfpwupgilpdj" path="res://scene/3/chronicle.tscn" id="4_r7mja"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 bg_color = Color(0.486275, 0.486275, 0.486275, 1)
@@ -37,4 +38,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Chain" parent="HBox" instance=ExtResource("3_g7pwu")]
+layout_mode = 2
+
+[node name="Chronicle" parent="HBox" instance=ExtResource("4_r7mja")]
 layout_mode = 2

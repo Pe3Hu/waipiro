@@ -3,6 +3,7 @@ extends MarginContainer
 
 @onready var marker = $HBox/Marker
 @onready var chain = $HBox/Chain
+@onready var chronicle = $HBox/Chronicle
 
 var domain = null
 var element = null
@@ -20,6 +21,7 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	input_.beast = self
 	chain.set_attributes(input_)
+	chronicle.set_attributes(input_)
 	set_icons()
 
 
@@ -30,10 +32,6 @@ func set_icons() -> void:
 	input.subtype = str(domain.tamer.index)
 	input.value = index
 	marker.set_attributes(input)
-
-
-func get_suit() -> String:
-	return marker.title.subtype
 
 
 func roll_thirst() -> String:

@@ -8,11 +8,18 @@ extends MarginContainer
 
 var arena = null
 var capacity = null
+var previous = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
 	arena = input_.arena
 	capacity = 1
+	previous.fight = {}
+	previous.fight.left = null
+	previous.fight.right = null
+	previous.beast = {}
+	previous.beast.left = null
+	previous.beast.right = null
 	
 	init_icons()
 	reset_icons()
@@ -42,10 +49,17 @@ func reset_icons() -> void:
 
 func add_beast(side_: String, beast_: MarginContainer) -> void:
 	beasts.add_child(beast_)
-	var icon = get(side_)
-	var value = beast_.chain.anchor.cacl_impact()
-	icon.change_number(value)
-	update_comparison()
+	roll_impulse_on_side(side_)
+
+
+func roll_impulse_on_side(side_: String) -> void:
+	for _i in Global.arr.side.size():
+		if side_ == Global.arr.side[_i]:
+			var icon = get(side_)
+			var beast = beasts.get_child(_i)
+			var value = beast.chain.anchor.cacl_impact()
+			icon.change_number(value)
+			update_comparison()
 
 
 func update_comparison() -> void:
@@ -64,6 +78,8 @@ func update_comparison() -> void:
 
 
 func give_beasts_to_tamer(tamer_: MarginContainer) -> void:
+	previous.winner = tamer_
+	
 	while beasts.get_child_count() > 0:
 		var beast = beasts.get_child(0)
 		beasts.remove_child(beast)
@@ -82,3 +98,148 @@ func give_beasts_to_tamer(tamer_: MarginContainer) -> void:
 
 func get_damage() -> int:
 	return abs(left.get_number() - right.get_number())
+
+
+func set_previous() -> void:
+	for _i in Global.arr.side.size():
+		var side = Global.arr.side[_i]
+		var beast = beasts.get_child(_i)
+		previous.fight[side] = "equilibrium"
+		previous.beast[side] = beast.chain.anchor.multiplication
+
+
+func set_achievements(phase_: String) -> void:
+	for data in Global.dict.libra[phase_]:
+		var func_name = "set_achievement_based_on_" +data.subtype+"_"+data.type
+		call(func_name)
+
+
+func set_achievement_based_on_previous_beast() -> void:
+	for _i in Global.arr.side.size():
+		var side = Global.arr.side[_i]
+		var data = {}
+		data.type = "beast"
+		
+		if previous[data.type][side] != null:
+			var beast = beasts.get_child(_i)
+			data.subtype = "previous"
+			data.values = []
+			data.values.append(beast.chain.anchor.multiplication)
+			data.values.append(previous[data.type][side])
+			data.condition = get_condition(data)
+			
+			beast.chronicle.update_achievement(data)
+
+
+func set_achievement_based_on_previous_fight() -> void:
+	for _i in Global.arr.side.size():
+		var side = Global.arr.side[_i]
+		var data = {}
+		data.type = "fight"
+		
+		if previous[data.type][side] != null:
+			var beast = beasts.get_child(_i)
+			data.subtype = "previous"
+			data.side = side
+			data.condition = get_condition(data)
+			
+			beast.chronicle.update_achievement(data)
+
+
+func set_achievement_based_on_current_beast() -> void:
+	for _i in Global.arr.side.size():
+		var _j = (_i + 1) % Global.arr.side.size()
+		var side = Global.arr.side[_i]
+		var beast = beasts.get_child(_i)
+		var icon = get(side)
+		var data = {}
+		data.type = "beast"
+		data.subtype = "current"
+		data.values = []
+		data.values.append(icon.get_number())
+		side = Global.arr.side[_j]
+		icon = get(side)
+		data.values.append(icon.get_number())
+		data.condition = get_condition(data)
+		
+		if data.condition != null:
+			beast.chronicle.update_achievement(data)
+
+
+func set_achievement_based_on_current_impulse() -> void:
+	for _i in Global.arr.side.size():
+		var side = Global.arr.side[_i]
+		var beast = beasts.get_child(_i)
+		var icon = get(side)
+		var data = {}
+		data.type = "impulse"
+		data.subtype = "current"
+		data.subcondition = "parity"
+		data.impulse = icon.get_number()
+		data.condition = get_condition(data)
+		
+		beast.chronicle.update_achievement(data)
+		
+		data.multiplication = beast.chain.anchor.multiplication
+		data.subcondition = "lucky"
+		data.condition = get_condition(data)
+		
+		beast.chronicle.update_achievement(data)
+	
+
+
+func set_achievement_based_on_current_fight() -> void:
+	for _i in Global.arr.side.size():
+		var side = Global.arr.side[_i]
+		var beast = beasts.get_child(_i)
+		var icon = get(side)
+		var data = {}
+		data.type = "fight"
+		data.subtype = "current"
+		data.side = side
+		data.impulse = icon.get_number()
+		data.condition = get_condition(data)
+		
+		beast.chronicle.update_achievement(data)
+
+
+func get_condition(data_: Dictionary) -> Variant:
+	match data_.type:
+		"beast":
+			if data_.values.front() > data_.values.back():
+				return "stronger"
+			if data_.values.front() < data_.values.back():
+				return "weaker"
+		"fight":
+			match data_.subtype:
+				"previous":
+					return previous.fight[data_.side]
+				"current":
+					match comparison.subtype:
+						"greater":
+							if data_.side == "left":
+								return "victory"
+							else:
+								return "defeat"
+						"equal":
+							return "equilibrium"
+						"less":
+							if data_.side == "right":
+								return "victory"
+							else:
+								return "defeat"
+		"impulse":
+			match data_.subcondition:
+				"parity":
+					match data_.impulse % 2:
+						0:
+							return "even"
+						1:
+							return "odd"
+				"lucky":
+					if data_.multiplication * 0.5 <= data_.impulse:
+							return "weaker"
+					else:
+							return "stronger"
+			
+	return null

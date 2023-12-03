@@ -1,0 +1,162 @@
+[
+ {
+  "title": "rebel",
+  "type": "beast",
+  "subtype": "previous",
+  "condition": "stronger",
+  "weight": 2,
+  "degree": 9,
+  "libra": "start",
+  "order": 0
+ },
+ {
+  "title": "mentor",
+  "type": "beast",
+  "subtype": "previous",
+  "condition": "weaker",
+  "weight": 2,
+  "degree": 9,
+  "libra": "start",
+  "order": 0
+ },
+ {
+  "title": "heir",
+  "type": "fight",
+  "subtype": "previous",
+  "condition": "victory",
+  "weight": 5,
+  "degree": 9,
+  "libra": "start",
+  "order": 1
+ },
+ {
+  "title": "avenger",
+  "type": "fight",
+  "subtype": "previous",
+  "condition": "defeat",
+  "weight": 5,
+  "degree": 9,
+  "libra": "start",
+  "order": 1
+ },
+ {
+  "title": "judge",
+  "type": "fight",
+  "subtype": "previous",
+  "condition": "equilibrium",
+  "weight": 8,
+  "degree": 4,
+  "libra": "start",
+  "order": 1
+ },
+ {
+  "title": "brave",
+  "type": "beast",
+  "subtype": "current",
+  "condition": "stronger",
+  "weight": 4,
+  "degree": 9,
+  "libra": "start",
+  "order": 2
+ },
+ {
+  "title": "coward",
+  "type": "beast",
+  "subtype": "current",
+  "condition": "weaker",
+  "weight": 4,
+  "degree": 9,
+  "libra": "start",
+  "order": 2
+ },
+ {
+  "title": "tyrant",
+  "type": "fight",
+  "subtype": "current",
+  "condition": "victory",
+  "weight": 7,
+  "degree": 9,
+  "libra": "end",
+  "order": 4
+ },
+ {
+  "title": "berserker",
+  "type": "fight",
+  "subtype": "current",
+  "condition": "defeat",
+  "weight": 7,
+  "degree": 9,
+  "libra": "end",
+  "order": 4
+ },
+ {
+  "title": "challenger",
+  "type": "fight",
+  "subtype": "current",
+  "condition": "equilibrium",
+  "weight": 10,
+  "degree": 4,
+  "libra": "end",
+  "order": 4
+ },
+ {
+  "title": "owl",
+  "type": "impulse",
+  "subtype": "current",
+  "condition": "even",
+  "weight": 1,
+  "degree": 16,
+  "libra": "end",
+  "order": 3
+ },
+ {
+  "title": "lark",
+  "type": "impulse",
+  "subtype": "current",
+  "condition": "odd",
+  "weight": 1,
+  "degree": 16,
+  "libra": "end",
+  "order": 3
+ },
+ {
+  "title": "underdog",
+  "type": "impulse",
+  "subtype": "current",
+  "condition": "weaker",
+  "weight": 3,
+  "degree": 16,
+  "libra": "end",
+  "order": 3
+ },
+ {
+  "title": "favorite",
+  "type": "impulse",
+  "subtype": "current",
+  "condition": "stronger",
+  "weight": 3,
+  "degree": 16,
+  "libra": "end",
+  "order": 3
+ },
+ {
+  "title": "herald",
+  "type": "fight",
+  "subtype": "first",
+  "condition": "victory",
+  "weight": 100,
+  "degree": 1,
+  "libra": "end",
+  "order": 4
+ },
+ {
+  "title": "destroyer",
+  "type": "fight",
+  "subtype": "last",
+  "condition": "victory",
+  "weight": 100,
+  "degree": 1,
+  "libra": "end",
+  "order": 4
+ }
+]

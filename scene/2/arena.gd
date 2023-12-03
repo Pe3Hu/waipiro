@@ -27,7 +27,7 @@ func set_attributes(input_: Dictionary) -> void:
 	init_counters()
 	next_cycle()
 	
-	for _i in 14:
+	for _i in 0:
 		next_turn()
 
 
@@ -74,19 +74,28 @@ func next_turn() -> void:
 				tamer.source.update_couple_based_on_beast(beast)
 				libra.add_beast(side, beast)
 		
+		libra.set_achievements("start")
+		libra.set_previous()
+		libra.set_achievements("end")
+		
 		if libra.comparison.subtype != "equal" and libra.comparison.subtype != "similar":
-			var _tamers = {}
-			
 			match libra.comparison.subtype:
 				"greater":
-					_tamers.winner = get("left")
-					_tamers.loser = get("right")
+					libra.previous.left = "victory"
+					libra.previous.right = "defeat"
 				"less":
-					_tamers.winner = get("right")
-					_tamers.loser = get("left")
+					libra.previous.right = "victory"
+					libra.previous.left = "defeat"
 			
-			libra.give_beasts_to_tamer(_tamers.winner)
-			_tamers.loser.health.get_damage(libra.get_damage())
+			for side in libra.previous:
+				var tamer = get(side)
+				
+				match libra.previous[side]:
+					"victory":
+						libra.give_beasts_to_tamer(tamer)
+					"defeat":
+						tamer.health.get_damage(libra.get_damage())
+			
 		
 		if hunger:
 			for side in Global.arr.side:

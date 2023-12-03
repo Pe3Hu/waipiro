@@ -35,6 +35,7 @@ alignment = 1
 
 [node name="VBox" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
+alignment = 1
 
 [node name="Health" parent="HBox/VBox" instance=ExtResource("2_4bdf8")]
 layout_mode = 2

@@ -2,10 +2,10 @@ extends MarginContainer
 
 
 @onready var bg = $BG
-@onready var innovation = $VBox/Innovation
-@onready var legacy = $VBox/Legacy
-@onready var ascension = $VBox/Ascension
-@onready var destiny = $VBox/Destiny
+@onready var innovation = $VBox/Essences/Innovation
+@onready var legacy = $VBox/Essences/Legacy
+@onready var ascension = $VBox/Essences/Ascension
+@onready var achievement = $VBox/Achievement
 
 var chain = null
 var type = null
@@ -59,9 +59,12 @@ func set_essence_value(input_: Dictionary) -> void:
 	set_aspect(input_.aspect)
 	
 	if input_.value > 0:
+		visible = true
 		essence.visible = true
 	
 	chain.anchor.recalc_aspect(input_.aspect)
+	
+
 
 func set_aspect(aspect_: String) -> void:
 	aspect = aspect_
