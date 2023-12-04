@@ -37,6 +37,8 @@ func init_arr() -> void:
 	arr.essence = ["innovation", "legacy", "ascension"]
 	arr.corral = ["dormant", "hunter", "prey"]
 	arr.achievement = ["type", "subtype", "condition"]
+	arr.blood = ["first", "last"]
+	arr.domination = ["victim", "offender"]
 
 
 func init_num() -> void:
@@ -218,7 +220,7 @@ func init_achievement() -> void:
 		if !dict.libra.has(achievement.libra):
 			dict.libra[achievement.libra] = []
 		
-		if achievement.subtype != "first" and achievement.subtype != "last":
+		if achievement.has("order"):
 			data = {}
 			data.type = achievement.type
 			data.subtype = achievement.subtype

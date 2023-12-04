@@ -10,6 +10,7 @@ var arena = null
 var side = null
 var index = null
 var opponent = null
+var bloods = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -17,6 +18,13 @@ func set_attributes(input_: Dictionary) -> void:
 	index = Global.num.index.tamer
 	Global.num.index.tamer += 1
 	
+	for blood in Global.arr.blood:
+		bloods[blood] = false
+	
+	init_nodes()
+
+
+func init_nodes() -> void:
 	var input = {}
 	input.tamer = self
 	domain.set_attributes(input)
@@ -27,4 +35,3 @@ func set_attributes(input_: Dictionary) -> void:
 	input.limits.fatigue = 0.25
 	input.total = 100
 	health.set_attributes(input)
-

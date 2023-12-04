@@ -63,7 +63,6 @@ func set_essence_value(input_: Dictionary) -> void:
 		essence.visible = true
 	
 	chain.anchor.recalc_aspect(input_.aspect)
-	
 
 
 func set_aspect(aspect_: String) -> void:

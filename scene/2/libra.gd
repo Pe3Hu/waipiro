@@ -104,7 +104,7 @@ func set_previous() -> void:
 	for _i in Global.arr.side.size():
 		var side = Global.arr.side[_i]
 		var beast = beasts.get_child(_i)
-		previous.fight[side] = "equilibrium"
+		#previous.fight[side] = "equilibrium"
 		previous.beast[side] = beast.chain.anchor.multiplication
 
 
@@ -127,7 +127,6 @@ func set_achievement_based_on_previous_beast() -> void:
 			data.values.append(beast.chain.anchor.multiplication)
 			data.values.append(previous[data.type][side])
 			data.condition = get_condition(data)
-			
 			beast.chronicle.update_achievement(data)
 
 
@@ -142,28 +141,23 @@ func set_achievement_based_on_previous_fight() -> void:
 			data.subtype = "previous"
 			data.side = side
 			data.condition = get_condition(data)
-			
 			beast.chronicle.update_achievement(data)
 
 
 func set_achievement_based_on_current_beast() -> void:
 	for _i in Global.arr.side.size():
 		var _j = (_i + 1) % Global.arr.side.size()
-		var side = Global.arr.side[_i]
 		var beast = beasts.get_child(_i)
-		var icon = get(side)
 		var data = {}
 		data.type = "beast"
 		data.subtype = "current"
 		data.values = []
-		data.values.append(icon.get_number())
-		side = Global.arr.side[_j]
-		icon = get(side)
-		data.values.append(icon.get_number())
-		data.condition = get_condition(data)
+		data.values.append(beast.chain.anchor.multiplication)
+		beast = beasts.get_child(_j)
 		
-		if data.condition != null:
-			beast.chronicle.update_achievement(data)
+		data.values.append(beast.chain.anchor.multiplication)
+		data.condition = get_condition(data)
+		beast.chronicle.update_achievement(data)
 
 
 func set_achievement_based_on_current_impulse() -> void:
@@ -177,15 +171,12 @@ func set_achievement_based_on_current_impulse() -> void:
 		data.subcondition = "parity"
 		data.impulse = icon.get_number()
 		data.condition = get_condition(data)
-		
 		beast.chronicle.update_achievement(data)
 		
 		data.multiplication = beast.chain.anchor.multiplication
 		data.subcondition = "lucky"
 		data.condition = get_condition(data)
-		
 		beast.chronicle.update_achievement(data)
-	
 
 
 func set_achievement_based_on_current_fight() -> void:
@@ -199,8 +190,8 @@ func set_achievement_based_on_current_fight() -> void:
 		data.side = side
 		data.impulse = icon.get_number()
 		data.condition = get_condition(data)
-		
 		beast.chronicle.update_achievement(data)
+		previous.fight[side] = get_condition(data)
 
 
 func get_condition(data_: Dictionary) -> Variant:
@@ -210,6 +201,8 @@ func get_condition(data_: Dictionary) -> Variant:
 				return "stronger"
 			if data_.values.front() < data_.values.back():
 				return "weaker"
+			
+			return "equilibrium"
 		"fight":
 			match data_.subtype:
 				"previous":
@@ -238,8 +231,8 @@ func get_condition(data_: Dictionary) -> Variant:
 							return "odd"
 				"lucky":
 					if data_.multiplication * 0.5 <= data_.impulse:
-							return "weaker"
-					else:
 							return "stronger"
-			
+					else:
+							return "weaker"
+	
 	return null

@@ -7,6 +7,7 @@ extends MarginContainer
 @onready var earth = $Elements/Earth
 
 var tamer = null
+var line = []
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -30,6 +31,18 @@ func set_couples() -> void:
 func update_couple_based_on_beast(beast_: MarginContainer) -> void:
 	var couple = get(beast_.element)
 	couple.stack.change_number(1)
+	
+	if !line.is_empty():
+		if beast_.element != line.back():
+			line = []
+		else:
+			var data = {}
+			data.type = "beast"
+			data.subtype = "previous"
+			data.condition = "element"
+			beast_.chronicle.update_achievement(data)
+	
+	line.append(beast_.element)
 	
 	if couple.stack.get_number() >= Global.num.source.limit:
 		couple.stack.change_number(-Global.num.source.limit)

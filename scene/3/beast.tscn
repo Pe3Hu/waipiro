@@ -41,4 +41,5 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Chronicle" parent="HBox" instance=ExtResource("4_r7mja")]
+visible = false
 layout_mode = 2

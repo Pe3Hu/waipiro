@@ -26,5 +26,7 @@ visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Beasts" type="GridContainer" parent="."]
+[node name="Beasts" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1

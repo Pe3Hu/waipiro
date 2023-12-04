@@ -43,6 +43,7 @@ func update_value(value_: String, shift_: int) -> void:
 				bar.value += shift_
 			
 			if type == "fatigue" and bar.value == 0:
+				health.tamer.bloods.last = true
 				health.tamer.arena.set_loser(health.tamer)
 			
 			value.text = str(bar.value)

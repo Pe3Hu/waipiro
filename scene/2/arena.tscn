@@ -42,12 +42,12 @@ layout_mode = 2
 [node name="Turn" parent="VBox/Counters" instance=ExtResource("2_xj3db")]
 layout_mode = 2
 
+[node name="Libra" parent="VBox" instance=ExtResource("2_mtvtx")]
+layout_mode = 2
+
 [node name="Tamers" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 alignment = 1
-
-[node name="Libra" parent="VBox/Tamers" instance=ExtResource("2_mtvtx")]
-layout_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05

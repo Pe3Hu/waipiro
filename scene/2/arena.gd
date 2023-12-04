@@ -2,7 +2,7 @@ extends MarginContainer
 
 
 @onready var tamers = $VBox/Tamers
-@onready var libra = $VBox/Tamers/Libra
+@onready var libra = $VBox/Libra
 @onready var turn = $VBox/Counters/Turn
 @onready var cycle = $VBox/Counters/Cycle
 @onready var timer = $Timer
@@ -27,7 +27,7 @@ func set_attributes(input_: Dictionary) -> void:
 	init_counters()
 	next_cycle()
 	
-	for _i in 0:
+	for _i in 1:
 		next_turn()
 
 
@@ -36,7 +36,7 @@ func add_tamer(tamer_: MarginContainer) -> void:
 	tamers.add_child(tamer_)
 	tamer_.arena = self
 	
-	if tamers.get_child_count() == 2:
+	if tamers.get_child_count() == 1:
 		left = tamer_
 		tamer_.side = "left"
 		tamers.move_child(tamer_, 0)
@@ -45,6 +45,9 @@ func add_tamer(tamer_: MarginContainer) -> void:
 		tamer_.side = "right"
 		left.opponent = tamer_
 		tamer_.opponent = left
+	
+	for blood in Global.arr.blood:
+		tamer_.bloods[blood] = false
 
 
 func init_counters() -> void:
@@ -87,7 +90,7 @@ func next_turn() -> void:
 					libra.previous.right = "victory"
 					libra.previous.left = "defeat"
 			
-			for side in libra.previous:
+			for side in Global.arr.side:
 				var tamer = get(side)
 				
 				match libra.previous[side]:
@@ -95,6 +98,37 @@ func next_turn() -> void:
 						libra.give_beasts_to_tamer(tamer)
 					"defeat":
 						tamer.health.get_damage(libra.get_damage())
+			
+			for side in Global.arr.side:
+				var tamer = get(side)
+				
+				match libra.previous[side]:
+					"defeat":
+						for blood in Global.arr.blood:
+							if tamer.bloods[blood]:
+								#var b = tamer.domain.hunter.beasts.get_children()
+								#var a = tamer.opponent.domain.hunter.beasts.get_children()
+								#var c = libra.beasts.get_children()
+								#var d = tamer.domain.prey.beasts.get_children()
+								#var e = tamer.opponent.domain.prey.beasts.get_children()
+								var beast = tamer.opponent.domain.hunter.beasts.get_children().back()
+								var data = {}
+								data.type = "fight"
+								data.subtype = blood
+								data.condition = "victory"
+								beast.chronicle.update_achievement(data)
+					"victory":
+						for _side in Global.arr.side:
+							var beast = tamer.domain.hunter.beasts.get_children().back()
+							
+							if side != _side:
+								beast = tamer.domain.prey.beasts.get_children().back()
+							
+							var data = {}
+							data.type = "impulse"
+							data.subtype = "current"
+							data.condition = libra.previous[_side]
+							beast.chronicle.update_achievement(data)
 			
 		
 		if hunger:

@@ -49,3 +49,6 @@ func set_icons() -> void:
 
 func update_counter(value_: int) -> void:
 	counter.change_number(value_)
+	
+	if !visible and counter.get_number() > 0:
+		visible = true

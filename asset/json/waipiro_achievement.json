@@ -1,6 +1,6 @@
 [
  {
-  "title": "rebel",
+  "title": "pupil",
   "type": "beast",
   "subtype": "previous",
   "condition": "stronger",
@@ -16,28 +16,35 @@
   "condition": "weaker",
   "weight": 2,
   "degree": 9,
-  "libra": "start",
-  "order": 0
+  "libra": "start"
+ },
+ {
+  "title": "rebel",
+  "type": "beast",
+  "subtype": "previous",
+  "condition": "equilibrium",
+  "weight": 6,
+  "degree": 9,
+  "libra": "start"
  },
  {
   "title": "heir",
   "type": "fight",
   "subtype": "previous",
   "condition": "victory",
-  "weight": 5,
+  "weight": 4,
   "degree": 9,
   "libra": "start",
   "order": 1
  },
  {
-  "title": "avenger",
+  "title": "outcast",
   "type": "fight",
   "subtype": "previous",
   "condition": "defeat",
-  "weight": 5,
+  "weight": 4,
   "degree": 9,
-  "libra": "start",
-  "order": 1
+  "libra": "start"
  },
  {
   "title": "judge",
@@ -46,31 +53,38 @@
   "condition": "equilibrium",
   "weight": 8,
   "degree": 4,
-  "libra": "start",
-  "order": 1
- },
- {
-  "title": "brave",
-  "type": "beast",
-  "subtype": "current",
-  "condition": "stronger",
-  "weight": 4,
-  "degree": 9,
-  "libra": "start",
-  "order": 2
+  "libra": "start"
  },
  {
   "title": "coward",
   "type": "beast",
   "subtype": "current",
-  "condition": "weaker",
-  "weight": 4,
+  "condition": "stronger",
+  "weight": 2,
   "degree": 9,
   "libra": "start",
   "order": 2
  },
  {
-  "title": "tyrant",
+  "title": "brave",
+  "type": "beast",
+  "subtype": "current",
+  "condition": "weaker",
+  "weight": 2,
+  "degree": 9,
+  "libra": "start"
+ },
+ {
+  "title": "monk",
+  "type": "beast",
+  "subtype": "current",
+  "condition": "equilibrium",
+  "weight": 6,
+  "degree": 9,
+  "libra": "start"
+ },
+ {
+  "title": "artist",
   "type": "fight",
   "subtype": "current",
   "condition": "victory",
@@ -86,8 +100,7 @@
   "condition": "defeat",
   "weight": 7,
   "degree": 9,
-  "libra": "end",
-  "order": 4
+  "libra": "end"
  },
  {
   "title": "challenger",
@@ -96,8 +109,7 @@
   "condition": "equilibrium",
   "weight": 10,
   "degree": 4,
-  "libra": "end",
-  "order": 4
+  "libra": "end"
  },
  {
   "title": "owl",
@@ -116,8 +128,7 @@
   "condition": "odd",
   "weight": 1,
   "degree": 16,
-  "libra": "end",
-  "order": 3
+  "libra": "end"
  },
  {
   "title": "underdog",
@@ -126,8 +137,7 @@
   "condition": "weaker",
   "weight": 3,
   "degree": 16,
-  "libra": "end",
-  "order": 3
+  "libra": "end"
  },
  {
   "title": "favorite",
@@ -136,8 +146,7 @@
   "condition": "stronger",
   "weight": 3,
   "degree": 16,
-  "libra": "end",
-  "order": 3
+  "libra": "end"
  },
  {
   "title": "herald",
@@ -146,8 +155,7 @@
   "condition": "victory",
   "weight": 100,
   "degree": 1,
-  "libra": "end",
-  "order": 4
+  "libra": "end"
  },
  {
   "title": "destroyer",
@@ -156,7 +164,69 @@
   "condition": "victory",
   "weight": 100,
   "degree": 1,
-  "libra": "end",
-  "order": 4
+  "libra": "end"
+ },
+ {
+  "title": "blessed",
+  "type": "beast",
+  "subtype": "current",
+  "condition": "element",
+  "weight": 9,
+  "degree": 4,
+  "libra": "start"
+ },
+ {
+  "title": "marked",
+  "type": "beast",
+  "subtype": "previous",
+  "condition": "element",
+  "weight": 9,
+  "degree": 9,
+  "libra": "start"
+ },
+ {
+  "title": "bloodman",
+  "type": "beast",
+  "subtype": "previous",
+  "condition": "pedigree",
+  "weight": 10,
+  "degree": 4,
+  "libra": "start"
+ },
+ {
+  "title": "cat",
+  "type": "impulse",
+  "subtype": "current",
+  "condition": "victory",
+  "weight": 5,
+  "degree": 16,
+  "libra": "end"
+ },
+ {
+  "title": "mouse",
+  "type": "impulse",
+  "subtype": "current",
+  "condition": "defeat",
+  "weight": 5,
+  "degree": 16,
+  "libra": "end"
+ },
+ {
+  "title": "tyrant",
+  "type": "beast",
+  "subtype": "victim",
+  "condition": "victory",
+  "weight": 20,
+  "degree": 1,
+  "libra": "end"
+ },
+ {
+  "title": "avenger",
+  "type": "beast",
+  "subtype": "offender",
+  "condition": "victory",
+  "weight": 20,
+  "degree": 1,
+  "libra": "end"
  }
 ]

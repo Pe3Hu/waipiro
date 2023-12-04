@@ -71,6 +71,11 @@ func cacl_impact() -> int:
 			icon.change_number(-blessing)
 		
 		chain.beast.blessing = false
+		var data = {}
+		data.type = "beast"
+		data.subtype = "current"
+		data.condition = "element"
+		chain.beast.chronicle.update_achievement(data)
 	
 	return impact
 

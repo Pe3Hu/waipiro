@@ -55,5 +55,9 @@ func get_damage(damage_: int) -> void:
 	var indicator = get(state) 
 	indicator.update_value("current", -damage_)
 	update_state()
+	
+	if !tamer.bloods.first:
+		if damage_ > 0:
+			tamer.bloods.first = true
 
 

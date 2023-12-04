@@ -8,6 +8,12 @@ var beast = null
 
 func set_attributes(input_: Dictionary) -> void:
 	beast = input_.beast
+	
+	var data = {}
+	data.type = "beast"
+	data.subtype = "previous"
+	data.condition = "element"
+	add_achievement(data)
 
 
 func update_achievement(input_: Dictionary) -> void:
@@ -56,4 +62,3 @@ func add_achievement(input_: Dictionary) -> void:
 	var achievement = Global.scene.achievement.instantiate()
 	achievements.add_child(achievement)
 	achievement.set_attributes(input_)
-
