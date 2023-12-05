@@ -37,7 +37,8 @@ func update_value(value_: String, shift_: int) -> void:
 				bar.value = 0
 				health.update_state()
 				visible = false
-				health.get_damage(_value)
+				if type != "fatigue":
+					health.get_damage(_value)
 				
 			else:
 				bar.value += shift_

@@ -18,3 +18,12 @@ res://scene/1/source.gd
 res://scene/3/chronicle.gd
 res://scene/3/achievement.gd
 res://scene/1/corral.tscn
+res://scene/3/beast.gd
+res://scene/2/lair.tscn
+res://scene/2/lair.gd
+res://scene/1/domain.gd
+res://scene/2/libra.tscn
+res://scene/3/totem.tscn
+res://scene/0/game.gd
+res://scene/3/totem.gd
+res://scene/3/chain.gd

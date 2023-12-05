@@ -2,6 +2,7 @@ extends MarginContainer
 
 
 @onready var marker = $HBox/Marker
+@onready var totem = $HBox/Totem
 @onready var chain = $HBox/Chain
 @onready var chronicle = $HBox/Chronicle
 
@@ -11,18 +12,24 @@ var index = 0
 var lucky = [0, 1, 1, 1, 1, 2]
 var deed = false
 var blessing = false
+var ratings = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
-	domain = input_.domain
-	element = input_.element
 	index = Global.num.index.beast
 	Global.num.index.beast += 1
 	
+	if input_.has("domain"):
+		domain = input_.domain
+		element = input_.element
+		
+		set_icons()
+		reset()
+	
 	input_.beast = self
+	totem.set_attributes(input_)
 	chain.set_attributes(input_)
 	chronicle.set_attributes(input_)
-	set_icons()
 
 
 func set_icons() -> void:
@@ -70,4 +77,56 @@ func assimilation(victim_: MarginContainer) -> void:
 	input.type = "innovation"
 	input.value = Global.rng.randi_range(_min, _max)
 	var link = chain.get_next_free_link()
-	link.set_essence_value(input)
+	
+	if link != null:
+		link.set_essence_value(input)
+	else:
+		for _i in 2:
+			link = chain.links.get_child(_i)
+			
+			if link.aspect == input.aspect:
+				input.type = "legacy"
+				input.value = 1
+				link.change_essence_value(input)
+
+
+func ascension() -> void:
+	if totem.couple.title.subtype != null:
+		totem.rise_evolution()
+	else:
+		var input = {}
+		input.pedigree = null
+		input.evolution = 1
+		
+		#var correlation = {}
+		#
+		#for aspect in Global.arr.aspect:
+			#var icon = chain.anchor.get(aspect+"Max")
+			#correlation[aspect] = float(icon.get_number()) / chain.anchor.amount
+		
+		var correlation = float(chain.anchor.get("dexterityMax").get_number()) / chain.anchor.get("strengthMax").get_number()
+		var datas = []
+		
+		for pedigree in Global.dict.totem.element[element]:
+			var data = {}
+			data.pedigree = pedigree
+			data.title = Global.dict.totem.pedigree[pedigree][1]
+			data.ascensions = Global.dict.totem.title[data.title].ascensions
+			data.correlation = data.ascensions.dexterity / data.ascensions.strength
+			data.affinity = abs(correlation - data.correlation)
+			data.weight = 1 + (3 - Global.dict.totem.element[element][pedigree]) * 0.5
+			data.value = data.affinity * data.weight
+			datas.append(data)
+		
+		datas.sort_custom(func(a, b): return a.value < b.value)
+		totem.set_pedigree(datas.front().pedigree)
+
+
+func rise_rating(wound_: int) -> void:
+	ratings.victory += 1
+	ratings.wound += wound_
+
+
+func reset() -> void:
+	for rating in Global.arr.rating:
+		ratings[rating] = 0

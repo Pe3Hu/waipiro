@@ -8,6 +8,7 @@ extends MarginContainer
 
 var chain = null
 var multiplication = null
+var amount = null
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -41,10 +42,12 @@ func recalc_aspect(aspect_: String) -> void:
 	var icon = get(aspect_+"Max")
 	icon.set_number(value)
 	multiplication = 1
+	amount = 0
 	
 	for aspect in Global.arr.aspect:
 		icon = get(aspect+"Max")
 		multiplication *= icon.get_number()
+		amount += icon.get_number()
 
 
 func cacl_impact() -> int:

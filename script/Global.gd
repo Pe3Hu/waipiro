@@ -39,6 +39,8 @@ func init_arr() -> void:
 	arr.achievement = ["type", "subtype", "condition"]
 	arr.blood = ["first", "last"]
 	arr.domination = ["victim", "offender"]
+	arr.rating = ["wound", "victory"]
+	arr.status = ["winner", "loser"]
 
 
 func init_num() -> void:
@@ -161,11 +163,13 @@ func init_totem() -> void:
 	dict.totem.title = {}
 	dict.totem.evolution = {}
 	dict.totem.pedigree = {}
+	dict.totem.element = {}
 	
 	var path = "res://asset/json/waipiro_totem.json"
 	var array = load_data(path)
 	
 	for totem in array:
+		totem.evolution = int(totem.evolution)
 		var data = {}
 		data.ascensions = {}
 		data.elements = {}
@@ -188,6 +192,13 @@ func init_totem() -> void:
 		dict.totem.title[totem.title] = data
 		dict.totem.evolution[totem.evolution][totem.pedigree] = totem.title
 		dict.totem.pedigree[totem.pedigree][totem.evolution] = totem.title
+		
+		if totem.evolution == 1:
+			for element in data.elements:
+				if !dict.totem.element.has(element):
+					dict.totem.element[element] = {}
+				
+				dict.totem.element[element][totem.pedigree] = data.elements[element]
 
 
 func init_achievement() -> void:

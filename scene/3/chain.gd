@@ -31,18 +31,21 @@ func set_attributes(input_: Dictionary) -> void:
 func spread_aspects() -> void:
 	var free = int(rank)
 	
-	for aspect in Global.arr.aspect:
-		var input = {}
-		input.aspect = aspect
-		input.legacy = Global.num.link.inborn
-		add_link(input)
-		free -= input.legacy
-	
-	for _i in free:
-		var input = {}
-		input.innovation = 1
-		input.aspect = Global.arr.aspect.pick_random()
-		add_link(input)
+	if rank > 0:
+		for aspect in Global.arr.aspect:
+			var input = {}
+			input.aspect = aspect
+			input.legacy = Global.num.link.inborn
+			add_link(input)
+			free -= input.legacy
+		
+		for _i in free:
+			var input = {}
+			input.innovation = 1
+			input.aspect = Global.arr.aspect.pick_random()
+			add_link(input)
+	else:
+		free = -2
 	
 	for _i in limits.old.back() - free - 1:
 		var input = {}

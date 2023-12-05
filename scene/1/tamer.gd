@@ -35,3 +35,4 @@ func init_nodes() -> void:
 	input.limits.fatigue = 0.25
 	input.total = 100
 	health.set_attributes(input)
+

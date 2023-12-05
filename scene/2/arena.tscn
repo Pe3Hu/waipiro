@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk0d0r81u31q3"]
+[gd_scene load_steps=6 format=3 uid="uid://bk0d0r81u31q3"]
 
 [ext_resource type="Script" path="res://scene/2/arena.gd" id="1_rljf5"]
 [ext_resource type="PackedScene" uid="uid://clxdrq3jxl3n8" path="res://scene/2/libra.tscn" id="2_mtvtx"]
 [ext_resource type="PackedScene" uid="uid://c3oifae6yxk68" path="res://scene/0/couple.tscn" id="2_xj3db"]
+[ext_resource type="PackedScene" uid="uid://6yqmi1n8sph" path="res://scene/2/lair.tscn" id="4_0hirn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -48,6 +49,9 @@ layout_mode = 2
 [node name="Tamers" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 alignment = 1
+
+[node name="Lair" parent="VBox" instance=ExtResource("4_0hirn")]
+layout_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05

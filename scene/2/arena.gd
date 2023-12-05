@@ -3,6 +3,7 @@ extends MarginContainer
 
 @onready var tamers = $VBox/Tamers
 @onready var libra = $VBox/Libra
+@onready var lair = $VBox/Lair
 @onready var turn = $VBox/Counters/Turn
 @onready var cycle = $VBox/Counters/Cycle
 @onready var timer = $Timer
@@ -11,6 +12,7 @@ var battleground = null
 var left = null
 var right = null
 var winner = null
+var loser = null
 var hunger = true
 
 
@@ -20,6 +22,7 @@ func set_attributes(input_: Dictionary) -> void:
 	var input = {}
 	input.arena = self
 	libra.set_attributes(input)
+	lair.set_attributes(input)
 	
 	for tamer in input_.tamers:
 		add_tamer(tamer)
@@ -27,8 +30,11 @@ func set_attributes(input_: Dictionary) -> void:
 	init_counters()
 	next_cycle()
 	
-	for _i in 1:
+	#for _i in 14:
+	while winner == null:
 		next_turn()
+	
+	lair.award()
 
 
 func add_tamer(tamer_: MarginContainer) -> void:
@@ -82,6 +88,7 @@ func next_turn() -> void:
 		libra.set_achievements("end")
 		
 		if libra.comparison.subtype != "equal" and libra.comparison.subtype != "similar":
+			var damage = libra.get_damage()
 			match libra.comparison.subtype:
 				"greater":
 					libra.previous.left = "victory"
@@ -97,7 +104,7 @@ func next_turn() -> void:
 					"victory":
 						libra.give_beasts_to_tamer(tamer)
 					"defeat":
-						tamer.health.get_damage(libra.get_damage())
+						tamer.health.get_damage(damage)
 			
 			for side in Global.arr.side:
 				var tamer = get(side)
@@ -106,11 +113,6 @@ func next_turn() -> void:
 					"defeat":
 						for blood in Global.arr.blood:
 							if tamer.bloods[blood]:
-								#var b = tamer.domain.hunter.beasts.get_children()
-								#var a = tamer.opponent.domain.hunter.beasts.get_children()
-								#var c = libra.beasts.get_children()
-								#var d = tamer.domain.prey.beasts.get_children()
-								#var e = tamer.opponent.domain.prey.beasts.get_children()
 								var beast = tamer.opponent.domain.hunter.beasts.get_children().back()
 								var data = {}
 								data.type = "fight"
@@ -121,7 +123,9 @@ func next_turn() -> void:
 						for _side in Global.arr.side:
 							var beast = tamer.domain.hunter.beasts.get_children().back()
 							
-							if side != _side:
+							if side == _side:
+								beast.rise_rating(damage)
+							else:
 								beast = tamer.domain.prey.beasts.get_children().back()
 							
 							var data = {}
@@ -129,7 +133,6 @@ func next_turn() -> void:
 							data.subtype = "current"
 							data.condition = libra.previous[_side]
 							beast.chronicle.update_achievement(data)
-			
 		
 		if hunger:
 			for side in Global.arr.side:
@@ -138,6 +141,7 @@ func next_turn() -> void:
 			
 			next_cycle()
 	else:
+		lair.award()
 		timer.stop()
 
 
@@ -158,9 +162,11 @@ func _on_timer_timeout():
 
 
 func set_loser(tamer_: MarginContainer) -> void:
-	for side in Global.arr.side:
-		var tamer = get(side)
-		
-		if tamer != tamer_:
-			winner = tamer
-			break
+	if winner == null:
+		for side in Global.arr.side:
+			var tamer = get(side)
+			
+			if tamer != tamer_:
+				winner = tamer
+			else:
+				loser = tamer

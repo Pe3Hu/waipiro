@@ -56,7 +56,20 @@ func get_multiplication_value() -> int:
 func set_essence_value(input_: Dictionary) -> void:
 	var essence = get(input_.type)
 	essence.couple.stack.set_number(input_.value)
-	set_aspect(input_.aspect)
+	
+	if input_.has("aspect"):
+		set_aspect(input_.aspect)
+		chain.anchor.recalc_aspect(input_.aspect)
+	
+	if input_.value > 0:
+		visible = true
+		essence.visible = true
+	
+
+
+func change_essence_value(input_: Dictionary) -> void:
+	var essence = get(input_.type)
+	essence.couple.stack.change_number(input_.value)
 	
 	if input_.value > 0:
 		visible = true
