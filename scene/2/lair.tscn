@@ -39,22 +39,22 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
+[node name="Descendants" type="HBoxContainer" parent="HBox/Ancestors"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="VBoxContainer" parent="HBox/Ancestors/Descendants"]
+layout_mode = 2
+alignment = 1
+
+[node name="Middle" type="VBoxContainer" parent="HBox/Ancestors/Descendants"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="VBoxContainer" parent="HBox/Ancestors/Descendants"]
+layout_mode = 2
+alignment = 1
+
 [node name="Right" type="VBoxContainer" parent="HBox/Ancestors"]
-layout_mode = 2
-alignment = 1
-
-[node name="Descendants" type="HBoxContainer" parent="HBox"]
-layout_mode = 2
-alignment = 1
-
-[node name="Left" type="VBoxContainer" parent="HBox/Descendants"]
-layout_mode = 2
-alignment = 1
-
-[node name="Middle" type="VBoxContainer" parent="HBox/Descendants"]
-layout_mode = 2
-alignment = 1
-
-[node name="Right" type="VBoxContainer" parent="HBox/Descendants"]
 layout_mode = 2
 alignment = 1

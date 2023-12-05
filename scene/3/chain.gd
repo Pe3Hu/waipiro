@@ -52,7 +52,7 @@ func spread_aspects() -> void:
 		input.aspect = null
 		add_link(input)
 		var link = links.get_child(links.get_child_count()-1)
-		link.visible = false
+		#link.visible = false
 
 
 func add_link(input_: Dictionary) -> void:

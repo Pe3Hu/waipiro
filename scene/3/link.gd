@@ -49,8 +49,9 @@ func set_essence(input_: Dictionary) -> void:
 	essence.set_attributes(input_)
 
 
-func get_multiplication_value() -> int:
-	return round(innovation.get_value() + legacy.get_value()) * ascension.get_value()
+func get_multiplication_value() -> float:
+	print([innovation.get_value(), legacy.get_value(), ascension.get_value()])
+	return (innovation.get_value() + legacy.get_value()) * ascension.get_value()
 
 
 func set_essence_value(input_: Dictionary) -> void:
@@ -59,12 +60,10 @@ func set_essence_value(input_: Dictionary) -> void:
 	
 	if input_.has("aspect"):
 		set_aspect(input_.aspect)
-		chain.anchor.recalc_aspect(input_.aspect)
 	
 	if input_.value > 0:
-		visible = true
+		#visible = true
 		essence.visible = true
-	
 
 
 func change_essence_value(input_: Dictionary) -> void:
@@ -84,3 +83,5 @@ func set_aspect(aspect_: String) -> void:
 	for _essence in Global.arr.essence:
 		var essence = get(_essence)
 		essence.update_aspect(aspect)
+	
+	chain.anchor.recalc_aspect(aspect)

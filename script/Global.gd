@@ -59,7 +59,6 @@ func init_num() -> void:
 	
 	num.source = {}
 	num.source.limit = 6
-	
 
 
 func init_dict() -> void:

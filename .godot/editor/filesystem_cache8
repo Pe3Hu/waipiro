@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701731506
+::res://::1701799124
 ::res://asset/::1701353284
 default_env.tres::Environment::-1::1690116911::0::1::::<><>::
 icon.png::CompressedTexture2D::2432420761471245026::1690116911::1690116911::1::::<><>::
@@ -59,7 +59,7 @@ ascension.png::CompressedTexture2D::8948496711630353761::1701450052::1701450105:
 destiny.png::CompressedTexture2D::3505553340695808887::1701449931::1701450105::1::::<><>::
 innovation.png::CompressedTexture2D::5970453308909767001::1701450076::1701450105::1::::<><>::
 legacy.png::CompressedTexture2D::2274879118076008256::1701450045::1701450105::1::::<><>::
-::res://asset/png/pedigree/::1701733954
+::res://asset/png/pedigree/::1701733956
 fury of depth.png::CompressedTexture2D::7065198960359127699::1701733841::1701733956::1::::<><>::
 shadow of light.png::CompressedTexture2D::2191630695736485574::1701733861::1701733956::1::::<><>::
 trail of doom.png::CompressedTexture2D::3576577541022936170::1701733869::1701733956::1::::<><>::
@@ -100,32 +100,32 @@ state.gd::GDScript::-1::1701725678::0::1::::<>MarginContainer<>::
 state.tscn::PackedScene::6756100983103674707::1701379741::0::1::::<><>::res://scene/1/state.gd<>uid://deu2vlj4q8un0::::res://asset/font/letter/Chunk Five Print.otf
 tamer.gd::GDScript::-1::1701727895::0::1::::<>MarginContainer<>::
 tamer.tscn::PackedScene::7228935906864600981::1701625618::0::1::::<><>::res://scene/1/tamer.gd<>uid://5mwapytb61xe::::res://scene/1/health.tscn<>uid://dtop6ce8ht5b::::res://scene/1/domain.tscn<>uid://cw46xru73vpst::::res://scene/1/source.tscn
-::res://scene/2/::1701733773
-arena.gd::GDScript::-1::1701731219::0::1::::<>MarginContainer<>::
-arena.tscn::PackedScene::3140146304835518148::1701733773::0::1::::<><>::res://scene/2/arena.gd<>uid://clxdrq3jxl3n8::::res://scene/2/libra.tscn<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn<>uid://6yqmi1n8sph::::res://scene/2/lair.tscn
+::res://scene/2/::1701736465
+arena.gd::GDScript::-1::1701734919::0::1::::<>MarginContainer<>::
+arena.tscn::PackedScene::3140146304835518148::1701736464::0::1::::<><>::res://scene/2/arena.gd<>uid://clxdrq3jxl3n8::::res://scene/2/libra.tscn<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn<>uid://6yqmi1n8sph::::res://scene/2/lair.tscn
 colosseum.gd::GDScript::-1::1701355960::0::1::::<>MarginContainer<>::
 colosseum.tscn::PackedScene::2300138001225209014::1701356057::0::1::::<><>::res://scene/2/colosseum.gd
-lair.gd::GDScript::-1::1701732833::0::1::::<>MarginContainer<>::
-lair.tscn::PackedScene::65482134743375333::1701733773::0::1::::<><>::res://scene/2/lair.gd
+lair.gd::GDScript::-1::1701736464::0::1::::<>MarginContainer<>::
+lair.tscn::PackedScene::65482134743375333::1701736465::0::1::::<><>::res://scene/2/lair.gd
 libra.gd::GDScript::-1::1701724074::0::1::::<>MarginContainer<>::
 libra.tscn::PackedScene::5592612729290861491::1701730892::0::1::::<><>::res://scene/2/libra.gd<>uid://ciw38iqel0v5a::::res://scene/0/icon.tscn
-::res://scene/3/::1701733773
+::res://scene/3/::1701736465
 achievement.gd::GDScript::-1::1701724986::0::1::::<>MarginContainer<>::
 achievement.tscn::PackedScene::3368918646451715785::1701730892::0::1::::<><>::res://scene/3/achievement.gd<>uid://ciw38iqel0v5a::::res://scene/0/icon.tscn
 anchor.gd::GDScript::-1::1701732366::0::1::::<>MarginContainer<>::
 anchor.tscn::PackedScene::3434231621866596225::1701719084::0::1::::<><>::res://scene/3/anchor.gd<>uid://ciw38iqel0v5a::::res://scene/0/icon.tscn
-beast.gd::GDScript::-1::1701733757::0::1::::<>MarginContainer<>::
-beast.tscn::PackedScene::8035728357368175602::1701733773::0::1::::<><>::res://scene/3/beast.gd<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn<>uid://07ul6h6w1d1y::::res://scene/3/totem.tscn<>uid://c30peyr85xmtg::::res://scene/3/chain.tscn<>uid://dbfpwupgilpdj::::res://scene/3/chronicle.tscn
-chain.gd::GDScript::-1::1701541344::0::1::::<>MarginContainer<>::
-chain.tscn::PackedScene::6790657619532175924::1701725731::0::1::::<><>::res://scene/3/chain.gd<>uid://bo6tj71u2ottp::::res://scene/3/anchor.tscn
+beast.gd::GDScript::-1::1701735622::0::1::::<>MarginContainer<>::
+beast.tscn::PackedScene::8035728357368175602::1701736464::0::1::::<><>::res://scene/3/beast.gd<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn<>uid://07ul6h6w1d1y::::res://scene/3/totem.tscn<>uid://c30peyr85xmtg::::res://scene/3/chain.tscn<>uid://dbfpwupgilpdj::::res://scene/3/chronicle.tscn
+chain.gd::GDScript::-1::1701736068::0::1::::<>MarginContainer<>::
+chain.tscn::PackedScene::6790657619532175924::1701736465::0::1::::<><>::res://scene/3/chain.gd<>uid://bo6tj71u2ottp::::res://scene/3/anchor.tscn
 chronicle.gd::GDScript::-1::1701724677::0::1::::<>MarginContainer<>::
 chronicle.tscn::PackedScene::7240723899767861251::1701719084::0::1::::<><>::res://scene/3/chronicle.gd
 essence.gd::GDScript::-1::1701540798::0::1::::<>MarginContainer<>::
 essence.tscn::PackedScene::1471928615747981454::1701453339::0::1::::<><>::res://scene/3/essence.gd<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn
-link.gd::GDScript::-1::1701731947::0::1::::<>MarginContainer<>::
-link.tscn::PackedScene::6394456006101161317::1701733773::0::1::::<><>::uid://u8apjlk3aoaw::::res://scene/3/essence.tscn<>res://scene/3/link.gd<>uid://bn86ulf62xffd::::res://scene/3/achievement.tscn
-totem.gd::GDScript::-1::1701733773::0::1::::<>MarginContainer<>::
-totem.tscn::PackedScene::1822016803145414760::1701733773::0::1::::<><>::res://scene/3/totem.gd<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn
+link.gd::GDScript::-1::1701735510::0::1::::<>MarginContainer<>::
+link.tscn::PackedScene::6394456006101161317::1701736465::0::1::::<><>::uid://u8apjlk3aoaw::::res://scene/3/essence.tscn<>res://scene/3/link.gd<>uid://bn86ulf62xffd::::res://scene/3/achievement.tscn
+totem.gd::GDScript::-1::1701734194::0::1::::<>MarginContainer<>::
+totem.tscn::PackedScene::1822016803145414760::1701734064::0::1::::<><>::res://scene/3/totem.gd<>uid://c3oifae6yxk68::::res://scene/0/couple.tscn
 ::res://scene/4/::1701360147
 ::res://script/::1701732946
 Global.gd::GDScript::-1::1701732946::0::1::::<>Node<>::

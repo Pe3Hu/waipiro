@@ -39,6 +39,7 @@ func recalc_aspect(aspect_: String) -> void:
 		if link.aspect == aspect_:
 			value += link.get_multiplication_value()
 	
+	value = round(value)
 	var icon = get(aspect_+"Max")
 	icon.set_number(value)
 	multiplication = 1
