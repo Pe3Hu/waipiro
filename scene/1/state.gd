@@ -54,4 +54,6 @@ func update_value(value_: String, shift_: int) -> void:
 
 func reset() -> void:
 	bar.value = bar.max_value
+	value.text = str(bar.value)
+	visible = true
 

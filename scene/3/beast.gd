@@ -16,15 +16,15 @@ var ratings = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
-	index = Global.num.index.beast
-	Global.num.index.beast += 1
+	if Global.arr.sacrifices.is_empty():
+		index = Global.num.index.beast
+		Global.num.index.beast += 1
+	else:
+		index = Global.arr.sacrifices.pop_front()
 	
 	if input_.has("domain"):
-		domain = input_.domain
 		element = input_.element
-		
-		set_icons()
-		reset()
+		set_domain(input_.domain)
 	
 	input_.beast = self
 	totem.set_attributes(input_)
@@ -130,3 +130,10 @@ func rise_rating(wound_: int) -> void:
 func reset() -> void:
 	for rating in Global.arr.rating:
 		ratings[rating] = 0
+
+
+func set_domain(domain_: MarginContainer) -> void:
+	domain = domain_
+	
+	set_icons()
+	reset()

@@ -33,10 +33,10 @@ func set_essences(input_: Dictionary) -> void:
 		
 		var essence = get(_essence)
 		
-		if custom_minimum_size.x == 0:
-			custom_minimum_size.x = essence.size.x
-		
-		custom_minimum_size.y += essence.size.y
+		#if custom_minimum_size.x == 0:
+			#custom_minimum_size.x = essence.size.x
+		#
+		#custom_minimum_size.y += essence.size.y
 	
 	var style = StyleBoxFlat.new()
 	bg.set("theme_override_styles/panel", style)
@@ -50,7 +50,6 @@ func set_essence(input_: Dictionary) -> void:
 
 
 func get_multiplication_value() -> float:
-	print([innovation.get_value(), legacy.get_value(), ascension.get_value()])
 	return (innovation.get_value() + legacy.get_value()) * ascension.get_value()
 
 

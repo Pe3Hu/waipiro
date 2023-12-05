@@ -61,3 +61,7 @@ func get_damage(damage_: int) -> void:
 			tamer.bloods.first = true
 
 
+func reset() -> void:
+	for _state in  Global.arr.state:
+		var state = get(_state)
+		state.reset()

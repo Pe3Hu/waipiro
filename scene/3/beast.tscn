@@ -10,7 +10,6 @@
 bg_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [node name="Beast" type="MarginContainer"]
-visible = false
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,6 +39,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Totem" parent="HBox" instance=ExtResource("3_er1hw")]
+visible = true
 layout_mode = 2
 
 [node name="Chain" parent="HBox" instance=ExtResource("3_g7pwu")]

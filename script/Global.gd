@@ -41,6 +41,7 @@ func init_arr() -> void:
 	arr.domination = ["victim", "offender"]
 	arr.rating = ["wound", "victory"]
 	arr.status = ["winner", "loser"]
+	arr.sacrifices = []
 
 
 func init_num() -> void:

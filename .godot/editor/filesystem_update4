@@ -11,3 +11,12 @@ res://scene/3/link.gd
 res://scene/0/icon.gd
 res://scene/3/anchor.gd
 res://scene/3/essence.gd
+res://scene/1/tamer.tscn
+res://scene/1/domain.gd
+res://scene/3/beast.gd
+res://scene/1/domain.tscn
+res://scene/2/arena.gd
+res://scene/1/health.gd
+res://scene/1/state.gd
+res://scene/1/tamer.gd
+res://scene/1/source.gd

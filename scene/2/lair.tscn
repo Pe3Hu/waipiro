@@ -58,3 +58,15 @@ alignment = 1
 [node name="Right" type="VBoxContainer" parent="HBox/Ancestors"]
 layout_mode = 2
 alignment = 1
+
+[node name="Sacrifices" type="HBoxContainer" parent="HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="VBoxContainer" parent="HBox/Sacrifices"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="VBoxContainer" parent="HBox/Sacrifices"]
+layout_mode = 2
+alignment = 1

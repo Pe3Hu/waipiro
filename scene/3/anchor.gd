@@ -102,3 +102,15 @@ func get_aspect_based_on(thirst_: String) -> String:
 			aspect = aspects.back()
 	
 	return aspect
+
+
+func get_potential() -> float:
+	var legacy = 0
+	var ascension = 0
+	
+	for link in chain.links.get_children():
+		legacy += link.get("legacy").get_value()
+		ascension += link.get("ascension").get_value()
+	
+	var potential = legacy * ascension
+	return potential

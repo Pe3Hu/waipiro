@@ -44,6 +44,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Libra" parent="VBox" instance=ExtResource("2_mtvtx")]
+visible = false
 layout_mode = 2
 
 [node name="Tamers" type="HBoxContainer" parent="VBox"]

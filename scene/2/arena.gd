@@ -35,6 +35,7 @@ func set_attributes(input_: Dictionary) -> void:
 		next_turn()
 	
 	lair.award()
+	close()
 
 
 func add_tamer(tamer_: MarginContainer) -> void:
@@ -170,3 +171,14 @@ func set_loser(tamer_: MarginContainer) -> void:
 				winner = tamer
 			else:
 				loser = tamer
+
+
+func close() -> void:
+	for side in Global.arr.side:
+		var tamer = get(side)
+		tamers.remove_child(tamer)
+		tamer.cradle.tamers.add_child(tamer)
+		tamer.reset()
+	
+	battleground.arenas.remove_child(self)
+	queue_free()

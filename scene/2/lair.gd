@@ -1,6 +1,8 @@
 extends MarginContainer
 
 
+@onready var leftSacrifices = $HBox/Sacrifices/Left
+@onready var rightSacrifices = $HBox/Sacrifices/Right
 @onready var leftAncestors = $HBox/Ancestors/Left
 @onready var rightAncestors = $HBox/Ancestors/Right
 @onready var leftDescendants = $HBox/Ancestors/Descendants/Left
@@ -8,7 +10,6 @@ extends MarginContainer
 @onready var rightDescendants = $HBox/Ancestors/Descendants/Right
 
 var arena = null
-var order = []
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -20,22 +21,39 @@ func award() -> void:
 		var tamer = arena.get(side)
 		tamer.domain.return_prey()
 	
+	fill_sacrifices()
 	fill_ancestors()
 	ascension_of_ancestors()
 	spawn_descendants()
+	spread_descendants()
+	return_beasts()
+
+
+func fill_sacrifices() -> void:
+	for side in Global.arr.side:
+		var tamer = arena.get(side)
+		var worsts = tamer.domain.get_sorted_beasts("worst")
+		var sacrifices = get(side+"Sacrifices")
+		
+		if tamer == arena.winner:
+			worsts.pop_back()
+			worsts.pop_back()
+		
+		for beast in worsts:
+			tamer.domain.dormant.beasts.remove_child(beast)
+			#sacrifices.add_child(beast)
+			Global.arr.sacrifices.append(beast.index)
 
 
 func fill_ancestors() -> void:
 	for side in Global.arr.side:
 		var tamer = arena.get(side)
-		var bests = tamer.domain.get_bests_beasts()
+		var bests = tamer.domain.get_sorted_beasts("best")
 		var ancestors = get(side+"Ancestors")
 		
 		for beast in bests:
 			tamer.domain.dormant.beasts.remove_child(beast)
 			ancestors.add_child(beast)
-			beast.visible = true
-			beast.chain.links.visible = true
 
 
 func ascension_of_ancestors() -> void:
@@ -111,14 +129,12 @@ func spawn_descendants() -> void:
 				
 				if _j < 2 and data.legacy < Global.num.link.inborn:
 					data.legacy = Global.num.link.inborn
+					descendant.chain.rank += data.legacy
 				
 				if data.legacy > 0:
 					var essence = link.get("legacy")
 					essence.couple.stack.set_number(data.legacy)
 					essence.visible = true
-					
-						
-					#input.rank += data.legacy
 				
 				var essence = link.get("ascension")
 				essence.couple.stack.set_number(data.ascension)
@@ -154,3 +170,50 @@ func get_legacy_and_ascension_after_links_interbreed(links_: Array) -> Dictionar
 		#	return 0
 	
 	return data
+
+
+func spread_descendants() -> void:
+	var datas = []
+	var order = ["winner", "winner", "loser", "winner", "loser", "loser", "winner", "loser"]
+	
+	var sides = {}
+	
+	for status in Global.arr.status:
+		for side in Global.arr.side:
+			if arena.get(status) == arena.get(side):
+				sides[status] = side 
+	
+	while middleDescendants.get_child_count() > 0:
+		var data = {}
+		data.descendant = middleDescendants.get_child(0)
+		middleDescendants.remove_child(data.descendant)
+		data.weight = data.descendant.chain.anchor.get_potential()
+		datas.append(data)
+	
+	datas.sort_custom(func(a, b): return a.weight > b.weight)
+	
+	for _i in order.size():
+		var status = order[_i]
+		var side = sides[status]
+		var descendant = datas[_i].descendant
+		var descendants = get(side+"Descendants")
+		descendants.add_child(descendant)
+		var tamer = arena.get(status)
+		descendant.set_domain(tamer.domain)
+
+
+func return_beasts() -> void:
+	for side in Global.arr.side:
+		var tamer = arena.get(side)
+		var ancestors = get(side+"Ancestors")
+		var descendants = get(side+"Descendants")
+		
+		while descendants.get_child_count() > 0:
+			var beast = descendants.get_child(0)
+			descendants.remove_child(beast)
+			tamer.domain.dormant.beasts.add_child(beast)
+		
+		while ancestors.get_child_count() > 0:
+			var beast = ancestors.get_child(0)
+			ancestors.remove_child(beast)
+			tamer.domain.dormant.beasts.add_child(beast)

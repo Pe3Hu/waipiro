@@ -84,32 +84,47 @@ func quench_hunger() -> void:
 		tamer.opponent.domain.dormant.beasts.add_child(victim)
 
 
-func get_beasts_based_on_rating() -> Array:
+func get_beasts_based_on_rating(criterion_: String) -> Array:
 	var beasts = []
 	refill_dormants()
 	
 	beasts.append_array(dormant.beasts.get_children()) 
-	beasts.sort_custom(func(a, b): return a.ratings.victory > b.ratings.victory)
+	match criterion_:
+		"best":
+			beasts.sort_custom(func(a, b): return a.ratings.victory > b.ratings.victory)
+		"worst":
+			beasts.sort_custom(func(a, b): return a.ratings.victory < b.ratings.victory)
+	
 	return beasts
 
 
-func get_bests_beasts() -> Array:
-	var beasts = get_beasts_based_on_rating()
-	var bests = []
+func get_sorted_beasts(criterion_: String) -> Array:
+	var beasts = get_beasts_based_on_rating(criterion_)
+	var sub_beasts = []
 	var result = []
 	var n = 4
 	
+	match criterion_:
+		"best":
+			n = 4
+		"worst":
+			n = 5
+	
 	for _i in n:
-		if bests.is_empty():
+		if sub_beasts.is_empty():
 			for _j in beasts.size():
 				if beasts[_j].ratings.victory == beasts.front().ratings.victory:
-					bests.append(beasts[_j])
+					sub_beasts.append(beasts[_j])
 				else:
 					break
-			
-			bests.sort_custom(func(a, b): return a.ratings.wound > b.ratings.wound)
+					
+			match criterion_:
+				"best":
+					sub_beasts.sort_custom(func(a, b): return a.ratings.wound > b.ratings.wound)
+				"worst":
+					sub_beasts.sort_custom(func(a, b): return a.ratings.wound < b.ratings.wound)
 		
-		var beast = bests.pop_front()
+		var beast = sub_beasts.pop_front()
 		result.append(beast)
 		beasts.erase(beast)
 		var link = beast.chain.get_next_free_link()

@@ -47,3 +47,9 @@ func update_couple_based_on_beast(beast_: MarginContainer) -> void:
 	if couple.stack.get_number() >= Global.num.source.limit:
 		couple.stack.change_number(-Global.num.source.limit)
 		beast_.blessing = true
+
+
+func reset() -> void:
+	for _element in Global.arr.element:
+		var couple = get(_element)
+		couple.stack.set_number(0)

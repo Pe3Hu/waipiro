@@ -36,3 +36,14 @@ func init_nodes() -> void:
 	input.total = 100
 	health.set_attributes(input)
 
+
+func reset() -> void:
+	health.reset()
+	source.reset()
+	
+	for blood in Global.arr.blood:
+		bloods[blood] = false
+	
+	arena = null
+	opponent = null
+	side = null
