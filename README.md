@@ -1,1 +1,1 @@
-![image](https://github.com/Pe3Hu/waipiro/assets/34793005/530f1c3c-bea8-43e6-9fd0-ae8765fd2878)
+![image](https://github.com/Pe3Hu/waipiro/assets/34793005/8021f7a3-f184-4b2f-a7b9-6babf8ba6fcf)
